@@ -35,9 +35,9 @@ public class RoleController {
         return "HELLO from API controller";
     }
 
-    @Operation(summary = "Cria um novo imóvel")
+    @Operation(summary = "Cria uma nova Role")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Imóvel criado com sucesso",
+            @ApiResponse(responseCode = "201", description = "Role criada com sucesso",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = RoleDto.class)) }),
             @ApiResponse(responseCode = "400", description = "Requisição inválida")

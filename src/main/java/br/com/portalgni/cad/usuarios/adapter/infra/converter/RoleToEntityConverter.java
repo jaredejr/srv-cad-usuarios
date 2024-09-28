@@ -6,12 +6,14 @@ import org.bson.types.ObjectId;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class RoleToEntityConverter implements Converter<Role, RoleEntity> {
     @Override
     public RoleEntity convert(Role role) {
         return new RoleEntity(
-                new ObjectId(role.getId()),
+                (role.getId()!=null) ? new ObjectId(role.getId()) : null,
                 role.getNome(),
                 role.getDescricao()
         );
