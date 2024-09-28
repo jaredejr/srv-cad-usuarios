@@ -1,5 +1,6 @@
 package br.com.portalgni.cad.usuarios.adapter.infra.entity;
 
+import br.com.portalgni.cad.usuarios.core.domain.Documento;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,9 +25,10 @@ public class UsuarioEntity {
     private String nome;
     private String email;
     private String senha;
+    private Set<DocumentoEntity> documentos;
     private Set<TipoUsuarioEntity> tipoUsuario;
     private LocalDateTime dataCriacao;
-    private LocalDateTime  ultimoAcesso;
+    private LocalDateTime ultimoAcesso;
     private String status;
 
 }

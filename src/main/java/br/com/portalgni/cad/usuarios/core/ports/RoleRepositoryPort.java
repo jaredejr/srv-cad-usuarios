@@ -10,5 +10,7 @@ public interface RoleRepositoryPort {
 
     void excluirRole(String id);
 
+    Role buscarRolePorNome(String nome);
+
     Set<Role> buscarTodasAsRoles();
 }

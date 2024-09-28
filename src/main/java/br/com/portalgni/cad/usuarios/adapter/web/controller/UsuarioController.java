@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UsuarioController {
 
-    @GetMapping("/testRole")
+    @GetMapping("/testUser")
     public String getMessage() {
         return "HELLO from API controller";
     }

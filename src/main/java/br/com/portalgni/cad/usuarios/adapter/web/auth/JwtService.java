@@ -10,8 +10,6 @@ import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,7 +27,9 @@ public class JwtService {
         Instant now = Instant.now();
         long expiry = 3600;
 
-        List<GrantedAuthority> roles = (List<GrantedAuthority>) authentication.getAuthorities();
+        String roles = authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.joining(" "));
 
         var claims = JwtClaimsSet.builder()
                 .issuer("srv-cad-usuarios")

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ReadingConverter
 @AllArgsConstructor
-public class ObjectIdToRoleConverter implements Converter<ObjectId, RoleEntity> {
+public class ObjectIdToRoleEntityConverter implements Converter<ObjectId, RoleEntity> {
 
     private final RolesRepository rolesRepository;
 

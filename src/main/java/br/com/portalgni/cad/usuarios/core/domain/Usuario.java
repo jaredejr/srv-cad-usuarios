@@ -22,8 +22,8 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
+    private Set<Documento> documentos;
     private Set<TipoUsuario> listaTipoUsuario;
-    private String idImobiliaria;
     private LocalDateTime dataCriacao;
     private LocalDateTime  ultimoAcesso;
     private String status;

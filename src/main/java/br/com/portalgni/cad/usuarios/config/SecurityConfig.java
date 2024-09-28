@@ -43,10 +43,10 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        log.error("CONFIGURANDO FILTROS DA APLICAÇÃO");
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers("/authenticate").permitAll()
                         .requestMatchers("/testRole").hasRole("SYSTEM_ADMIN")
                         .anyRequest().authenticated())
