@@ -2,21 +2,32 @@ package br.com.portalgni.cad.usuarios.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springdoc.core.customizers.OpenApiCustomizer;
-import org.springdoc.core.customizers.OperationCustomizer;
 import org.springdoc.core.models.GroupedOpenApi;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.method.HandlerMethod;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Configuration
 public class OpenApiConfig {
+
+    @Value("${app.name}")
+    private String applicationName;
+
+    @Value("${app.version}")
+    private String applicationVersion;
+
+    @Value("${app.description}")
+    private String applicationDescription;
+
+
 
     @Bean
     public GroupedOpenApi publicApi() {
@@ -30,7 +41,9 @@ public class OpenApiConfig {
                                         .addSecuritySchemes("basicAuth", new SecurityScheme()
                                                 .type(SecurityScheme.Type.HTTP)
                                                 .scheme("basic")))
-                                .info(new Info().title("srv-cad-usuarios").version("v1"))
+                                .info(new Info().title(applicationName)
+                                        .version(applicationVersion)
+                                        .description(getDescription()))
                                 .security(List.of(
                                         new SecurityRequirement().addList("basicAuth", List.of("/authenticate"))));
                     }
@@ -53,11 +66,19 @@ public class OpenApiConfig {
                                                 .type(SecurityScheme.Type.HTTP)
                                                 .scheme("bearer")
                                                 .bearerFormat("JWT")))
-                            .info(new Info().title("srv-cad-usuarios").version("v1"))
+                            .info(new Info().title(applicationName)
+                                    .version(applicationVersion)
+                                    .description(getDescription()))
                             .security(List.of(
                                     new SecurityRequirement().addList("bearerAuth")));
                     }
                 })
                 .build();
+    }
+
+    public String getDescription() {
+        Charset isoCharset = StandardCharsets.ISO_8859_1;
+        Charset utf8Charset = StandardCharsets.UTF_8;
+        return new String(applicationDescription.getBytes(isoCharset), utf8Charset);
     }
 }

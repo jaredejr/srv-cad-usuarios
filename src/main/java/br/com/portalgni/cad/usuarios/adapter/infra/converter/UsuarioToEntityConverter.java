@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class UsuarioToEntityConverter implements Converter<Usuario, UsuarioEntity> {
 
+    EnderecoToEntityConverter enderecoToEntity;
+
     @Override
     public UsuarioEntity convert(Usuario usuario) {
         return new UsuarioEntity(
@@ -22,6 +24,9 @@ public class UsuarioToEntityConverter implements Converter<Usuario, UsuarioEntit
                 usuario.getNome(),
                 usuario.getEmail(),
                 usuario.getSenha(),
+                usuario.getEnderecos().stream()
+                        .map(enderecoToEntity::convert)
+                        .collect(Collectors.toSet()),
                 usuario.getDocumentos().stream().map(documento ->
                         new DocumentoEntity(documento.getNumero(),
                                 documento.getTipoDocumento(),

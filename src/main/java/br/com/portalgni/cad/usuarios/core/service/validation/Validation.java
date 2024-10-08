@@ -3,8 +3,8 @@ package br.com.portalgni.cad.usuarios.core.service.validation;
 
 import javax.management.InvalidAttributeValueException;
 
-public interface Validation<T> {
+public interface Validation<T,R> {
 
-    public void validate(T obj) throws InvalidAttributeValueException;
+    public R validate(T obj) throws InvalidAttributeValueException;
 
 }

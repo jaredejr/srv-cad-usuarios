@@ -25,6 +25,7 @@ public class UsuarioEntity {
     private String nome;
     private String email;
     private String senha;
+    private Set<EnderecoEntity> enderecos;
     private Set<DocumentoEntity> documentos;
     private Set<TipoUsuarioEntity> tipoUsuario;
     private LocalDateTime dataCriacao;

@@ -18,6 +18,7 @@ public class EntityToUsuarioConverter implements Converter<UsuarioEntity, Usuari
 
     ObjectIdToRoleEntityConverter objectIdToRoleEntity;
     EntityToRoleConverter entityToRole;
+    EntityToEnderecoConverter entityToEndereco;
 
     @Override
     public Usuario convert(UsuarioEntity entity) {
@@ -25,6 +26,8 @@ public class EntityToUsuarioConverter implements Converter<UsuarioEntity, Usuari
                 entity.getNome(),
                 entity.getEmail(),
                 entity.getSenha(),
+                entity.getEnderecos().stream()
+                                .map(entityToEndereco::convert).collect(Collectors.toSet()),
                 entity.getDocumentos().stream().map(documentoEntity ->
                         new Documento(documentoEntity.getNumero(),
                                 documentoEntity.getTipoDocumento(),

@@ -1,10 +1,7 @@
 package br.com.portalgni.cad.usuarios.config;
 
-import br.com.portalgni.cad.usuarios.adapter.infra.converter.EntityToRoleConverter;
 import br.com.portalgni.cad.usuarios.adapter.infra.converter.ObjectIdToRoleEntityConverter;
-import br.com.portalgni.cad.usuarios.adapter.infra.converter.RoleToEntityConverter;
 import br.com.portalgni.cad.usuarios.adapter.infra.repository.RolesRepository;
-import br.com.portalgni.cad.usuarios.adapter.infra.repository.RolesRepositoryAdapter;
 import br.com.portalgni.cad.usuarios.core.ports.RoleRepositoryPort;
 import br.com.portalgni.cad.usuarios.core.ports.RoleServicePort;
 import br.com.portalgni.cad.usuarios.core.ports.UsuarioRepositoryPort;
@@ -12,6 +9,8 @@ import br.com.portalgni.cad.usuarios.core.ports.UsuarioServicePort;
 import br.com.portalgni.cad.usuarios.core.service.RoleService;
 import br.com.portalgni.cad.usuarios.core.service.UsuarioService;
 import br.com.portalgni.cad.usuarios.core.service.validation.role.CreateRoleValidation;
+import br.com.portalgni.cad.usuarios.core.service.validation.role.NotNullRoleFieldsValidation;
+import br.com.portalgni.cad.usuarios.core.service.validation.role.RoleIdValidator;
 import br.com.portalgni.cad.usuarios.core.service.validation.role.UpdateRoleValidation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,11 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-public class AppConfig {
+public class RoleBeansConfig {
 
     private final RolesRepository repository;
 
-    public AppConfig(@Lazy RolesRepository repository){
+    public RoleBeansConfig(@Lazy RolesRepository repository){
         this.repository = repository;
     }
 
@@ -39,21 +38,33 @@ public class AppConfig {
     }
 
     @Bean
-    public CreateRoleValidation createRoleValidation(){
-        return new CreateRoleValidation();
+    public RoleIdValidator roleIdValidator(RoleRepositoryPort roleRepositoryPort){
+        return new RoleIdValidator(roleRepositoryPort);
     }
 
     @Bean
-    public UpdateRoleValidation updateRoleValidation(){
-        return new UpdateRoleValidation();
+    public NotNullRoleFieldsValidation notNullRoleFieldsValidation(){
+        return new NotNullRoleFieldsValidation();
+    }
+
+    @Bean
+    public CreateRoleValidation createRoleValidation(NotNullRoleFieldsValidation notNullRoleFieldsValidation){
+        return new CreateRoleValidation(notNullRoleFieldsValidation);
+    }
+
+    @Bean
+    public UpdateRoleValidation updateRoleValidation(NotNullRoleFieldsValidation notNullRoleFieldsValidation,
+                                                     RoleIdValidator roleIdValidator){
+        return new UpdateRoleValidation(notNullRoleFieldsValidation, roleIdValidator);
     }
 
     @Bean
     public RoleServicePort roleServicePort(
             RoleRepositoryPort roleRepository,
             CreateRoleValidation createRoleValidation,
-            UpdateRoleValidation updateRoleValidation){
-        return new RoleService(roleRepository, createRoleValidation, updateRoleValidation);
+            UpdateRoleValidation updateRoleValidation,
+            RoleIdValidator roleIdValidator){
+        return new RoleService(roleRepository, createRoleValidation, updateRoleValidation, roleIdValidator);
     }
 
     @Bean
