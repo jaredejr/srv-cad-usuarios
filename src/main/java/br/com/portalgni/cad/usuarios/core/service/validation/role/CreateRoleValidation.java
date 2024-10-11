@@ -11,10 +11,12 @@ import javax.management.InvalidAttributeValueException;
 public class CreateRoleValidation implements Validation<Role, Role> {
 
     NotNullRoleFieldsValidation notNullFieldsValidation;
+    RoleNameValidator roleNameValidator;
 
     @Override
     public Role validate(Role role) throws InvalidAttributeValueException {
         if (ObjectUtils.anyNotNull(role.getId())) throw new InvalidAttributeValueException("Ao criar uma Role, o id não deve ser informado.");
-        return notNullFieldsValidation.validate(role);
+        return roleNameValidator.validate(
+                notNullFieldsValidation.validate(role));
     }
 }

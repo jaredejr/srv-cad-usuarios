@@ -13,7 +13,9 @@ public class TipoUsuarioToEntityConverter implements Converter<TipoUsuario, Tipo
     public TipoUsuarioEntity convert(TipoUsuario tipoUsuario) {
         return new TipoUsuarioEntity(
                 new ObjectId(tipoUsuario.getRole().getId()),
-                new ObjectId(tipoUsuario.getContexto())
+                tipoUsuario.getContexto()!=null?
+                        new ObjectId(tipoUsuario.getContexto())
+                        :null
         );
     }
 }

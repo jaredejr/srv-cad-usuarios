@@ -1,7 +1,6 @@
 package br.com.portalgni.cad.usuarios.core.service;
 
 import br.com.portalgni.cad.usuarios.core.domain.Role;
-import br.com.portalgni.cad.usuarios.core.domain.Usuario;
 import br.com.portalgni.cad.usuarios.core.ports.RoleRepositoryPort;
 import br.com.portalgni.cad.usuarios.core.ports.RoleServicePort;
 import br.com.portalgni.cad.usuarios.core.service.validation.role.CreateRoleValidation;
@@ -10,8 +9,6 @@ import br.com.portalgni.cad.usuarios.core.service.validation.role.UpdateRoleVali
 import lombok.AllArgsConstructor;
 
 import javax.management.InvalidAttributeValueException;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.Set;
 
 @AllArgsConstructor

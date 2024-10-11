@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.management.InvalidAttributeValueException;
+
 @Slf4j
 @Service
 @AllArgsConstructor
@@ -19,11 +21,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("Irá buscar o usuário pelo username(email): ".concat(username));
-        Usuario usuario = usuarioService.findByEmail(username);
-
-        log.info("Usuário encontrado: ".concat(usuario.getEmail()));
-        if (usuario==null)
-            throw new UsernameNotFoundException("Usuário não encontrado");
+        Usuario usuario = null;
+        try {
+            usuario = usuarioService.findByEmail(username);
+        } catch (InvalidAttributeValueException e) {
+            log.error("Usuário não encontrado: ".concat(username));
+            log.error(e.getMessage());
+            throw new UsernameNotFoundException(e.getMessage());
+        }
         return new UsuarioDetails(usuario);
     }
 }

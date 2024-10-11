@@ -11,7 +11,7 @@ public interface RoleRepositoryPort {
 
     void excluirRole(Role role);
 
-    Role buscarRolePorNome(String nome);
+    Optional<Role> buscarRolePorNome(String nome);
 
     Set<Role> buscarTodasAsRoles();
 

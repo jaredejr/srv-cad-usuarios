@@ -5,6 +5,7 @@ import br.com.portalgni.cad.usuarios.adapter.infra.entity.TipoUsuarioEntity;
 import br.com.portalgni.cad.usuarios.adapter.infra.entity.UsuarioEntity;
 import br.com.portalgni.cad.usuarios.core.domain.Usuario;
 import lombok.AllArgsConstructor;
+import org.apache.commons.lang3.ObjectUtils;
 import org.bson.types.ObjectId;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -20,23 +21,35 @@ public class UsuarioToEntityConverter implements Converter<Usuario, UsuarioEntit
     @Override
     public UsuarioEntity convert(Usuario usuario) {
         return new UsuarioEntity(
-                new ObjectId(usuario.getId()),
+                usuario.getId()!=null?
+                        new ObjectId(usuario.getId())
+                        :null,
                 usuario.getNome(),
                 usuario.getEmail(),
                 usuario.getSenha(),
-                usuario.getEnderecos().stream()
-                        .map(enderecoToEntity::convert)
-                        .collect(Collectors.toSet()),
-                usuario.getDocumentos().stream().map(documento ->
-                        new DocumentoEntity(documento.getNumero(),
-                                documento.getTipoDocumento(),
-                                documento.getEmissao(),
-                                documento.getValidade(),
-                                documento.getEmissor())).collect(Collectors.toSet()),
-                usuario.getListaTipoUsuario().stream().map(tipoUsuario ->
-                        new TipoUsuarioEntity(
+                ObjectUtils.anyNotNull(usuario.getEnderecos())
+                        ? usuario.getEnderecos().stream()
+                                .map(enderecoToEntity::convert)
+                                .collect(Collectors.toSet())
+                        : null,
+                ObjectUtils.anyNotNull(usuario.getDocumentos())
+                        ? usuario.getDocumentos()
+                                .stream()
+                                .map(documento -> new DocumentoEntity(
+                                        documento.getNumero(),
+                                        documento.getTipoDocumento(),
+                                        documento.getEmissao(),
+                                        documento.getValidade(),
+                                        documento.getEmissor()))
+                                .collect(Collectors.toSet())
+                        : null,
+                usuario.getListaTipoUsuario()
+                        .stream()
+                        .map(tipoUsuario -> new TipoUsuarioEntity(
                                 new ObjectId(tipoUsuario.getRole().getId()),
-                                new ObjectId(tipoUsuario.getContexto()))).collect(Collectors.toSet()),
+                                ObjectUtils.anyNotNull(tipoUsuario.getContexto())
+                                        ? new ObjectId(tipoUsuario.getContexto()) :null))
+                        .collect(Collectors.toSet()),
                 usuario.getDataCriacao(),
                 usuario.getUltimoAcesso(),
                 usuario.getStatus()

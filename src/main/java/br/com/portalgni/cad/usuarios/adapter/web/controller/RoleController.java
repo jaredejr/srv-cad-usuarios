@@ -12,10 +12,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.management.InvalidAttributeValueException;
@@ -25,7 +27,7 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/role")
+@RequestMapping("role")
 public class RoleController {
 
     private RoleServicePort roleService;
@@ -39,6 +41,7 @@ public class RoleController {
                             schema = @Schema(implementation = RoleDto.class)) })
     })
     @GetMapping
+    @PreAuthorize("hasRole('SYSTEM_ADMIN') and principal.claims['contextMap']['SYSTEM_ADMIN'] eq '6695aa2abe7a5bdad16ddc04'")
     public ResponseEntity<List<RoleDto>> buscarTodasAsRoles() {
         Set<Role> roles = roleService.buscarTodasAsRoles();
         return ResponseEntity.ok(roles.stream().map(roleToDto::convert).collect(Collectors.toList()));
@@ -54,6 +57,7 @@ public class RoleController {
             @ApiResponse(responseCode = "404", description = "Role não encontrada")
     })
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('SYSTEM_ADMIN')")
     public ResponseEntity<RoleDto> buscarRolePorId(@PathVariable("id") String id) throws InvalidAttributeValueException {
         Role role = roleService.bucarPorId(id);
         return ResponseEntity.ok(roleToDto.convert(role));

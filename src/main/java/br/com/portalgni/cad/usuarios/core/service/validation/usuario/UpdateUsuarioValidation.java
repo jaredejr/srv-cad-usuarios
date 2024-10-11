@@ -8,18 +8,17 @@ import org.apache.commons.lang3.ObjectUtils;
 import javax.management.InvalidAttributeValueException;
 
 @AllArgsConstructor
-public class CreateUsuarioValidation implements Validation<Usuario, Usuario> {
+public class UpdateUsuarioValidation implements Validation<Usuario, Usuario> {
 
+    UsuarioIdValidator usuarioIdValidator;
     NotNullUsuarioFieldsValidation notNullUsuarioFieldsValidation;
     StatusUsuarioValidator statusUsuarioValidator;
     TipoUsuarioValidator tipoUsuarioValidator;
     EmailUsuarioValidation emailUsuarioValidation;
 
-
     @Override
     public Usuario validate(Usuario usuario) throws InvalidAttributeValueException {
-        if (ObjectUtils.anyNotNull(usuario.getId()))
-            throw new InvalidAttributeValueException("Ao criar um Usuario, o id não deve ser informado.");
+        usuarioIdValidator.validate(usuario.getId());
         return tipoUsuarioValidator.validate(
                 statusUsuarioValidator.validate(
                         emailUsuarioValidation.validate(

@@ -4,14 +4,13 @@ import br.com.portalgni.cad.usuarios.core.domain.TipoUsuario;
 import br.com.portalgni.cad.usuarios.core.domain.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @AllArgsConstructor
@@ -32,6 +31,15 @@ public class UsuarioDetails implements UserDetails {
         }
 
         return authorities;
+    }
+
+    public Map<String, String >getContextMap(){
+        return usuario.getListaTipoUsuario()
+                .stream()
+                .collect(Collectors.toMap(
+                        tipoUsuario -> tipoUsuario.getRole().getNome(),
+                        tipoUsuario -> ObjectUtils.anyNull(tipoUsuario.getContexto())
+                                ? "" : tipoUsuario.getContexto()));
     }
 
     @Override

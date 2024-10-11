@@ -8,7 +8,7 @@
 		<version>3.3.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.com.portalgni</groupId>
+	<groupId>br.com.portalgni.cad.usuarios</groupId>
 	<artifactId>srv-cad-usuarios</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>srv-cad-usuarios</name>
@@ -58,7 +58,6 @@
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 			<version>3.1.2</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>

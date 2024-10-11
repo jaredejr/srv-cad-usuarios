@@ -36,8 +36,8 @@ public class RolesRepositoryAdapter implements RoleRepositoryPort {
     }
 
     @Override
-    public Role buscarRolePorNome(String nome){
-        return entityToRole.convert(rolesRepository.findByNome(nome));
+    public Optional<Role> buscarRolePorNome(String nome){
+        return rolesRepository.findByNome(nome).map(entityToRole::convert);
     }
 
     @Override

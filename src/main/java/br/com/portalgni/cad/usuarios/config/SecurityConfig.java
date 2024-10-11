@@ -1,12 +1,19 @@
 package br.com.portalgni.cad.usuarios.config;
 
 
+import br.com.portalgni.cad.usuarios.adapter.infra.repository.ClientKeyRepository;
+import br.com.portalgni.cad.usuarios.adapter.infra.repository.InMemoryClientKeyRepository;
+import br.com.portalgni.cad.usuarios.adapter.web.auth.ClientAwareJwtDecoder;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -33,13 +40,11 @@ import com.nimbusds.jose.proc.SecurityContext;
 @Slf4j
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
-    @Value("${jwt.public.key}")
-    private RSAPublicKey key;
-
-    @Value("${jwt.private.key}")
-    private RSAPrivateKey priv;
+    @Autowired
+    InMemoryClientKeyRepository clientKeyRepository;
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -47,24 +52,20 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                        .requestMatchers("/authenticate").permitAll()
-                        .requestMatchers("/testRole").hasRole("SYSTEM_ADMIN")
+                        .requestMatchers("/authenticate","/validate-token","jwks").permitAll()
+//                        .requestMatchers(HttpMethod.POST,"/role/**", "/usuario/**").hasRole("SYSTEM_ADMIN")
+//                        .requestMatchers(HttpMethod.PUT,"/role/**", "/usuario/**").hasRole("SYSTEM_ADMIN")
+//                        .requestMatchers(HttpMethod.DELETE,"/role/**", "/usuario/**").hasRole("SYSTEM_ADMIN")
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
-                .oauth2ResourceServer(conf -> conf.jwt(jwt -> jwt.decoder(jwtDecoder())))
+                .oauth2ResourceServer(conf -> conf.jwt(jwt -> jwt.decoder(clientAwareJwtDecoder())))
+                .securityContext(securityContext -> securityContext.requireExplicitSave(false))
                 .build();
     }
 
     @Bean
-    JwtDecoder jwtDecoder() {
-        return NimbusJwtDecoder.withPublicKey(key).build();
-    }
-
-    @Bean
-    JwtEncoder jwtEncoder() {
-        JWK jwk = new RSAKey.Builder(key).privateKey(priv).build();
-        JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
-        return new NimbusJwtEncoder(jwks);
+    ClientAwareJwtDecoder clientAwareJwtDecoder() {
+        return new ClientAwareJwtDecoder(clientKeyRepository);
     }
 
     @Bean

@@ -18,14 +18,13 @@ public class RoleIdValidator implements Validation<String, Role> {
 
     @Override
     public Role validate(String id) throws InvalidAttributeValueException {
-        if (Boolean.FALSE.equals(Utils.isValidHex(id))) throw new InvalidAttributeValueException("O formato do id é inválido.");
+        if (Boolean.FALSE.equals(Utils.isValidHex(id)))
+            throw new InvalidAttributeValueException("O formato do id da Role é inválido.");
         return findAndThrowIfNotFound(id);
     }
 
     private Role findAndThrowIfNotFound(String id) throws InvalidAttributeValueException {
-        Optional<Role> roleOptional = roleRepository.buscarPorId(id);
-        if (roleOptional.isEmpty())
-            throw new InvalidAttributeValueException("Role não encontrada");
-        return roleOptional.get();
+        return roleRepository.buscarPorId(id)
+                .orElseThrow(()-> new InvalidAttributeValueException("Role não encontrada"));
     }
 }
