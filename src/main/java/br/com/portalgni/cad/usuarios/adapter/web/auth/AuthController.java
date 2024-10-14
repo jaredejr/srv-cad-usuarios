@@ -1,19 +1,14 @@
-package br.com.portalgni.cad.usuarios.adapter.web.controller;
+package br.com.portalgni.cad.usuarios.adapter.web.auth;
 
 import br.com.portalgni.cad.usuarios.adapter.infra.repository.InMemoryClientKeyRepository;
-import br.com.portalgni.cad.usuarios.adapter.web.auth.AuthService;
-import br.com.portalgni.cad.usuarios.adapter.web.auth.ClientAwareJwtDecoder;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtException;

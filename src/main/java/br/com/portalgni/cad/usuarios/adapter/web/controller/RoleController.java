@@ -38,10 +38,10 @@ public class RoleController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Roles encontradas",
                     content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = RoleDto.class)) })
+                            schema = @Schema(implementation = RoleDto.class, ref = "../#/components/schemas/RoleDto")) })
     })
     @GetMapping
-    @PreAuthorize("hasRole('SYSTEM_ADMIN') and principal.claims['contextMap']['SYSTEM_ADMIN'] eq '6695aa2abe7a5bdad16ddc04'")
+    @PreAuthorize("hasRole('SYSTEM_ADMIN')")
     public ResponseEntity<List<RoleDto>> buscarTodasAsRoles() {
         Set<Role> roles = roleService.buscarTodasAsRoles();
         return ResponseEntity.ok(roles.stream().map(roleToDto::convert).collect(Collectors.toList()));

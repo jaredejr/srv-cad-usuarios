@@ -35,12 +35,20 @@ public class OpenApiConfig {
     private String applicationDescription;
 
 
+    @Bean
+    public GroupedOpenApi privateApi() {
+        return GroupedOpenApi.builder()
+                .group("private-api")
+                .pathsToExclude("/authenticate", "/validate-token", "/jwks")
+                .pathsToMatch("/**")
+                .build();
+    }
 
     @Bean
     public GroupedOpenApi publicApi() {
         return GroupedOpenApi.builder()
                 .group("auth-api")
-                .pathsToMatch("/authenticate")
+                .pathsToMatch("/authenticate", "/validate-token", "/jwks")
                 .addOpenApiCustomizer(new OpenApiCustomizer() {
                     @Override
                     public void customise(OpenAPI openApi) {
@@ -48,45 +56,12 @@ public class OpenApiConfig {
                                         .addSecuritySchemes("basicAuth", new SecurityScheme()
                                                 .type(SecurityScheme.Type.HTTP)
                                                 .scheme("basic")))
-//                                        .addSecuritySchemes("Client-Id", new SecurityScheme()
-//                                                .type(SecurityScheme.Type.APIKEY)
-//                                                .in(SecurityScheme.In.HEADER)
-//                                                .name("X-Client-Id")))
                                 .info(new Info().title(applicationName)
                                         .version(applicationVersion)
                                         .description(getDescription()))
                                 .security(List.of(
                                         new SecurityRequirement().addList(
                                                 "basicAuth", List.of("/authenticate", "/validate-token"))));
-                    }
-                })
-                .build();
-    }
-
-    @Bean
-    public GroupedOpenApi privateApi() {
-        return GroupedOpenApi.builder()
-                .group("private-api")
-                .packagesToScan("br.com.portalgni.cad.usuarios.adapter.web.controller","br.com.portalgni.cad.usuarios.adapter.web.dto")
-            .pathsToExclude("/authenticate","/validate-token")
-                .pathsToMatch("/**")
-                .addOpenApiCustomizer(new OpenApiCustomizer() {
-                    @Override
-                    public void customise(OpenAPI openApi) {
-                        openApi.components(new Components()
-                                        .schemas(Map.of(
-                                                "UsuarioDto",  new Schema<UsuarioDto>().$ref("#/components/schemas/" + UsuarioDto.class.getSimpleName()),
-                                                "RoleDto", new Schema<RoleDto>().$ref("#/components/schemas/" + RoleDto.class.getSimpleName()),
-                                                "TipoUsuarioDto", new Schema<TipoUsuarioDto >().$ref("#/components/schemas/" + TipoUsuarioDto.class.getSimpleName())))
-                                        .addSecuritySchemes("bearerAuth", new SecurityScheme()
-                                                .type(SecurityScheme.Type.HTTP)
-                                                .scheme("bearer")
-                                                .bearerFormat("JWT")))
-                            .info(new Info().title(applicationName)
-                                    .version(applicationVersion)
-                                    .description(getDescription()))
-                            .security(List.of(
-                                    new SecurityRequirement().addList("bearerAuth")));
                     }
                 })
                 .build();
@@ -100,7 +75,17 @@ public class OpenApiConfig {
 
     @Bean
     public OpenAPI customOpenAPI() {
-        return new OpenAPI();
+        return new OpenAPI()
+                .info(new Info().title(applicationName)
+                        .version(applicationVersion)
+                        .description(getDescription()))
+                .components(new Components()
+                        .addSecuritySchemes("bearerAuth", new SecurityScheme()
+                                .type(SecurityScheme.Type.HTTP)
+                                .scheme("bearer")
+                                .bearerFormat("JWT")))
+                .security(List.of(
+                        new SecurityRequirement().addList("bearerAuth")));
     }
 
 }
