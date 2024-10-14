@@ -6,7 +6,7 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Schema(name = "RoleDto", description = "Representação de uma role",$dynamicAnchor = "")
+@Schema(description = "Representação de uma role")
 public class RoleDto {
 
     @Schema(description = "ID da Role (ObjectId em formato hexadecimal)", hidden = true)
