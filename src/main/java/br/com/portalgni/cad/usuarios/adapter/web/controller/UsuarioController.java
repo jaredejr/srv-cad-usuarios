@@ -15,6 +15,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.management.InvalidAttributeValueException;
@@ -40,6 +43,7 @@ public class UsuarioController {
     })
     @GetMapping
     public ResponseEntity<List<UsuarioDto>> buscarTodasOsUsuarios() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Set<Usuario> usuarios = usuarioService.buscarTodos();
         return ResponseEntity.ok(usuarios.stream().map(usuarioToDto::convert).collect(Collectors.toList()));
     }
@@ -51,7 +55,8 @@ public class UsuarioController {
                     content = {@Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = UsuarioDto.class)) }),
-            @ApiResponse(responseCode = "404", description = "Usuario não encontrado")
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado",
+                    content = { @Content(schema = @Schema(implementation = Object.class)) })
     })
     @GetMapping("{id}")
     public ResponseEntity<UsuarioDto> buscarUsuarioPorId(@PathVariable("id") String id) throws InvalidAttributeValueException {
@@ -62,10 +67,11 @@ public class UsuarioController {
 
     @Operation(summary = "Cria um novo Usuario")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Usuario criado com sucesso",
+            @ApiResponse(responseCode = "200", description = "Usuario atualizado com sucesso",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = UsuarioDto.class)) }),
-            @ApiResponse(responseCode = "400", description = "Requisição inválida")
+            @ApiResponse(responseCode = "400", description = "Requisição inválida",
+                    content = { @Content(schema = @Schema(implementation = Object.class)) })
     })
     @PostMapping
     public ResponseEntity<UsuarioDto> criarUsuario(@RequestBody UsuarioDto UsuarioDto) throws InvalidAttributeValueException {
@@ -78,11 +84,14 @@ public class UsuarioController {
             @ApiResponse(responseCode = "200", description = "Usuario atualizado com sucesso",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = UsuarioDto.class)) }),
-            @ApiResponse(responseCode = "400", description = "Requisição inválida")
+            @ApiResponse(responseCode = "400", description = "Requisição inválida",
+                    content = { @Content(schema = @Schema(implementation = Object.class)) })
     })
     @PutMapping("{id}")
-    public ResponseEntity<UsuarioDto> editarUsuario(@PathVariable String id, @RequestBody UsuarioDto UsuarioDto) throws InvalidAttributeValueException {
-        Usuario usuario = usuarioService.editarUsuario(id, Objects.requireNonNull(dtoToUsuario.convert(UsuarioDto)));
+    @PreAuthorize("hasRole('SYSTEM_ADMIN') or " +
+            "@updateContextValidator.validate(principal.claims['userId'],#id)")
+    public ResponseEntity<UsuarioDto> editarUsuario(@PathVariable String id, @RequestBody UsuarioDto usuarioDto) throws InvalidAttributeValueException {
+        Usuario usuario = usuarioService.editarUsuario(id, Objects.requireNonNull(dtoToUsuario.convert(usuarioDto)));
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioToDto.convert(usuario));
     }
 
@@ -103,8 +112,9 @@ public class UsuarioController {
                     description = "Usuarios encontrados",
                     content = {@Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "404", description = "Usuarios não encontrados")
+                            schema = @Schema(implementation = UsuarioDto.class)) }),
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado",
+                    content = { @Content(schema = @Schema(implementation = Object.class)) })
     })
     @PostMapping("buscar-por-nome")
     public ResponseEntity<Set<UsuarioDto>> buscarUsuarioPorNome(@RequestBody String nome) throws InvalidAttributeValueException {
@@ -121,8 +131,9 @@ public class UsuarioController {
                     description = "Usuarios encontrados",
                     content = {@Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = TipoUsuarioDto.class)) }),
-            @ApiResponse(responseCode = "404", description = "Usuarios não encontrados")
+                            schema = @Schema(implementation = UsuarioDto.class)) }),
+            @ApiResponse(responseCode = "404", description = "Usuários não encontrados",
+                    content = { @Content(schema = @Schema(implementation = Object.class)) })
     })
     @PostMapping("buscar-por-tipo")
     public ResponseEntity<Set<UsuarioDto>> buscarUsuarioPorTipo(@RequestBody TipoUsuarioDto tipoUsuarioDto) throws InvalidAttributeValueException {

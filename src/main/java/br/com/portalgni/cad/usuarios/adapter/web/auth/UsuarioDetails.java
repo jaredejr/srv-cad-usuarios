@@ -42,6 +42,10 @@ public class UsuarioDetails implements UserDetails {
                                 ? "" : tipoUsuario.getContexto()));
     }
 
+    public String getUserId(){
+        return usuario.getId();
+    }
+
     @Override
     public String getPassword() {
         return usuario.getSenha();

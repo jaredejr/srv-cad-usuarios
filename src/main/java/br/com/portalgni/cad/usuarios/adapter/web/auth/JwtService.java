@@ -50,6 +50,7 @@ public class JwtService {
                 .claim("roles", roles)
                 .claim("clientId", clientId)
                 .claim("contextMap", usuarioDetails.getContextMap())
+                .claim("userId", usuarioDetails.getUserId())
                 .build();
 
         RSAPublicKey publicKey = clientKeyRepository.getPublicKey(clientId);

@@ -23,6 +23,11 @@ public class UsuarioBeansConfig {
     }
 
     @Bean
+    public UpdateContextValidator updateContextValidator(UsuarioRepositoryPort usuarioRepositoryPort){
+        return new UpdateContextValidator(usuarioRepositoryPort);
+    }
+
+    @Bean
     public EmailUsuarioValidation emailUsuarioValidation(UsuarioRepositoryPort usuarioRepositoryPort){
         return new EmailUsuarioValidation(usuarioRepositoryPort);
     }

@@ -38,7 +38,7 @@ public class RoleController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Roles encontradas",
                     content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = RoleDto.class, ref = "../#/components/schemas/RoleDto")) })
+                            schema = @Schema(implementation = RoleDto.class)) })
     })
     @GetMapping
     @PreAuthorize("hasRole('SYSTEM_ADMIN')")
