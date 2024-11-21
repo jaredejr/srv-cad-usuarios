@@ -6,7 +6,7 @@ import javax.naming.directory.InvalidAttributeValueException;
 import java.util.Set;
 
 public interface UsuarioServicePort {
-    Usuario findByEmail(String email) throws javax.management.InvalidAttributeValueException;
+    Usuario buscarUsuarioPorEmail(String email) throws javax.management.InvalidAttributeValueException;
 
     Usuario criarUsuario(Usuario usuario) throws javax.management.InvalidAttributeValueException;
 

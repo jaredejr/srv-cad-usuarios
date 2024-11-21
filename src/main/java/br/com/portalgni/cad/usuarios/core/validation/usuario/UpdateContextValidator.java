@@ -1,4 +1,4 @@
-package br.com.portalgni.cad.usuarios.core.service.validation.usuario;
+package br.com.portalgni.cad.usuarios.core.validation.usuario;
 
 import br.com.portalgni.cad.usuarios.core.domain.TipoUsuario;
 import br.com.portalgni.cad.usuarios.core.domain.Usuario;

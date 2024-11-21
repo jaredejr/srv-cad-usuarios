@@ -1,15 +1,12 @@
-package br.com.portalgni.cad.usuarios.core.service.validation.role;
+package br.com.portalgni.cad.usuarios.core.validation.role;
 
 import br.com.portalgni.cad.usuarios.core.domain.Role;
 import br.com.portalgni.cad.usuarios.core.ports.RoleRepositoryPort;
-import br.com.portalgni.cad.usuarios.core.service.validation.Validation;
-import br.com.portalgni.cad.usuarios.core.service.validation.util.Utils;
+import br.com.portalgni.cad.usuarios.core.validation.Validation;
+import br.com.portalgni.cad.usuarios.core.validation.util.Utils;
 import lombok.AllArgsConstructor;
-import org.bson.types.ObjectId;
 
 import javax.management.InvalidAttributeValueException;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @AllArgsConstructor
 public class RoleIdValidator implements Validation<String, Role> {

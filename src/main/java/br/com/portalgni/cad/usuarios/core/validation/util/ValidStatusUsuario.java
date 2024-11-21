@@ -1,4 +1,4 @@
-package br.com.portalgni.cad.usuarios.core.service.validation.util;
+package br.com.portalgni.cad.usuarios.core.validation.util;
 
 public enum ValidStatusUsuario {
 

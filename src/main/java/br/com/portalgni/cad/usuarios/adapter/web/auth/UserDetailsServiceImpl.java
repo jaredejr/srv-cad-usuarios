@@ -23,7 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         log.info("Irá buscar o usuário pelo username(email): ".concat(username));
         Usuario usuario = null;
         try {
-            usuario = usuarioService.findByEmail(username);
+            usuario = usuarioService.buscarUsuarioPorEmail(username);
         } catch (InvalidAttributeValueException e) {
             log.error("Usuário não encontrado: ".concat(username));
             log.error(e.getMessage());

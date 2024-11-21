@@ -1,16 +1,13 @@
 package br.com.portalgni.cad.usuarios.core.service;
 
-import br.com.portalgni.cad.usuarios.core.domain.Role;
 import br.com.portalgni.cad.usuarios.core.domain.TipoUsuario;
 import br.com.portalgni.cad.usuarios.core.domain.Usuario;
 import br.com.portalgni.cad.usuarios.core.ports.RoleRepositoryPort;
 import br.com.portalgni.cad.usuarios.core.ports.UsuarioRepositoryPort;
 import br.com.portalgni.cad.usuarios.core.ports.UsuarioServicePort;
-import br.com.portalgni.cad.usuarios.core.service.validation.role.RoleNameValidator;
-import br.com.portalgni.cad.usuarios.core.service.validation.usuario.CreateUsuarioValidation;
-import br.com.portalgni.cad.usuarios.core.service.validation.usuario.TipoUsuarioValidator;
-import br.com.portalgni.cad.usuarios.core.service.validation.usuario.UpdateUsuarioValidation;
-import br.com.portalgni.cad.usuarios.core.service.validation.usuario.UsuarioIdValidator;
+import br.com.portalgni.cad.usuarios.core.validation.usuario.CreateUsuarioValidation;
+import br.com.portalgni.cad.usuarios.core.validation.usuario.UpdateUsuarioValidation;
+import br.com.portalgni.cad.usuarios.core.validation.usuario.UsuarioIdValidator;
 import lombok.AllArgsConstructor;
 
 import javax.management.InvalidAttributeValueException;
@@ -29,7 +26,7 @@ public class UsuarioService implements UsuarioServicePort {
     private static final String NENHUM_USUARIO_ENCONTRADO = "Nenhum usuário encontrado";
 
     @Override
-    public Usuario findByEmail(String email) throws InvalidAttributeValueException {
+    public Usuario buscarUsuarioPorEmail(String email) throws InvalidAttributeValueException {
         return usuarioRepository.findByEmail(email)
                 .orElseThrow(()-> new InvalidAttributeValueException(NENHUM_USUARIO_ENCONTRADO));
     }

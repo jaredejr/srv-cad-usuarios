@@ -1,4 +1,4 @@
-package br.com.portalgni.cad.usuarios.core.service.validation;
+package br.com.portalgni.cad.usuarios.core.validation;
 
 
 import javax.management.InvalidAttributeValueException;

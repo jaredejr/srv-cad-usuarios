@@ -1,9 +1,8 @@
-package br.com.portalgni.cad.usuarios.core.service.validation.usuario;
+package br.com.portalgni.cad.usuarios.core.validation.usuario;
 
-import br.com.portalgni.cad.usuarios.core.domain.Role;
 import br.com.portalgni.cad.usuarios.core.domain.TipoUsuario;
 import br.com.portalgni.cad.usuarios.core.domain.Usuario;
-import br.com.portalgni.cad.usuarios.core.service.validation.Validation;
+import br.com.portalgni.cad.usuarios.core.validation.Validation;
 import org.apache.commons.lang3.ObjectUtils;
 
 import javax.management.InvalidAttributeValueException;

@@ -1,22 +1,11 @@
 package br.com.portalgni.cad.usuarios.config;
 
-import br.com.portalgni.cad.usuarios.adapter.infra.converter.ObjectIdToRoleEntityConverter;
-import br.com.portalgni.cad.usuarios.adapter.infra.repository.RolesRepository;
 import br.com.portalgni.cad.usuarios.core.ports.RoleRepositoryPort;
 import br.com.portalgni.cad.usuarios.core.ports.RoleServicePort;
-import br.com.portalgni.cad.usuarios.core.ports.UsuarioRepositoryPort;
-import br.com.portalgni.cad.usuarios.core.ports.UsuarioServicePort;
 import br.com.portalgni.cad.usuarios.core.service.RoleService;
-import br.com.portalgni.cad.usuarios.core.service.UsuarioService;
-import br.com.portalgni.cad.usuarios.core.service.validation.role.*;
+import br.com.portalgni.cad.usuarios.core.validation.role.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Configuration
 public class RoleBeansConfig {

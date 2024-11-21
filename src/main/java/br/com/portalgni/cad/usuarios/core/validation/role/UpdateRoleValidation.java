@@ -1,7 +1,7 @@
-package br.com.portalgni.cad.usuarios.core.service.validation.role;
+package br.com.portalgni.cad.usuarios.core.validation.role;
 
 import br.com.portalgni.cad.usuarios.core.domain.Role;
-import br.com.portalgni.cad.usuarios.core.service.validation.Validation;
+import br.com.portalgni.cad.usuarios.core.validation.Validation;
 import lombok.AllArgsConstructor;
 
 import javax.management.InvalidAttributeValueException;
