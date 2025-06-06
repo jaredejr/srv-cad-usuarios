@@ -30,12 +30,13 @@ public class AuthController {
 
 
     @PostMapping("/authenticate")
-    public String authenticate(Authentication authentication,
-                               @Parameter(in = ParameterIn.HEADER, description = "Client ID", required = true, schema = @Schema(type = "string"))
-                               @RequestHeader("X-Client-Id") String clientId) {
+    public Map<String, String> authenticate(Authentication authentication,
+                                            @Parameter(in = ParameterIn.HEADER, description = "Client ID", required = true, schema = @Schema(type = "string"))
+                                            @RequestHeader("X-Client-Id") String clientId) {
         log.error("autenticando usuário: ".concat(authentication.getName()));
         System.out.println("autenticando usuário: ".concat(authentication.getName()));
-        return authService.auth(authentication);
+        String tokenValue = authService.auth(authentication);
+        return Map.of("token", tokenValue);
     }
 
     @PostMapping("/validate-token")
