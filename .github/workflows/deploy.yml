@@ -6,7 +6,7 @@ on:
       - development # Não rodar em pushes para a branch development
   pull_request:
     branches:
-      - master # Rodar em PRs para a branch master
+      - main # Rodar em PRs para a branch master
 
 
 permissions:
