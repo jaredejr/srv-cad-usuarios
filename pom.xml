@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.portalgni</groupId>
 	<artifactId>cad.usuarios</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>srv-cad-usuarios</name>
 	<description>serviço para cadastro de usuários</description>
 	<url/>
