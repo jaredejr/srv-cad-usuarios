@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtException;
@@ -28,6 +29,10 @@ public class AuthController {
     private final ClientAwareJwtDecoder jwtDecoder;
     private final InMemoryClientKeyRepository clientKeyRepository;
 
+    @GetMapping("/health")
+    public ResponseEntity<String> ok() {
+        return ResponseEntity.ok("ok");
+    }
 
     @PostMapping("/authenticate")
     public Map<String, String> authenticate(Authentication authentication,
