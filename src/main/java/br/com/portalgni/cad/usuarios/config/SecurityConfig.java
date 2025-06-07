@@ -51,11 +51,12 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                        .requestMatchers("/authenticate","/validate-token","/jwks", "/health").permitAll()
-//                        .requestMatchers(HttpMethod.POST,"/role/**", "/usuario/**").hasRole("SYSTEM_ADMIN")
-//                        .requestMatchers(HttpMethod.PUT,"/role/**", "/usuario/**").hasRole("SYSTEM_ADMIN")
-//                        .requestMatchers(HttpMethod.DELETE,"/role/**", "/usuario/**").hasRole("SYSTEM_ADMIN")
+                        //.requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                        //.requestMatchers("/authenticate","/validate-token","/jwks", "/health").permitAll()
+                        .requestMatchers("/**").permitAll()
+//                      //  .requestMatchers(HttpMethod.POST,"/role/**", "/usuario/**").hasRole("SYSTEM_ADMIN")
+//                      //  .requestMatchers(HttpMethod.PUT,"/role/**", "/usuario/**").hasRole("SYSTEM_ADMIN")
+//                      //  .requestMatchers(HttpMethod.DELETE,"/role/**", "/usuario/**").hasRole("SYSTEM_ADMIN")
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .oauth2ResourceServer(conf -> conf.jwt(jwt -> jwt.decoder(clientAwareJwtDecoder())))
