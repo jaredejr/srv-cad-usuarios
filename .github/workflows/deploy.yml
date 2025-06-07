@@ -2,8 +2,12 @@ name: Deploy srv-cad-usuarios to ECS
 
 on:
   push:
-    pull_request:
-      - main # Aciona em pushes para a branch main
+    branches-ignore:
+      - development # Não rodar em pushes para a branch development
+  pull_request:
+    branches:
+      - master # Rodar em PRs para a branch master
+
 
 permissions:
   id-token: write # Necessário para autenticação OIDC com AWS
@@ -55,6 +59,17 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_NAME:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY_NAME:$IMAGE_TAG
           echo "image_uri=$ECR_REGISTRY/$ECR_REPOSITORY_NAME:$IMAGE_TAG" >> $GITHUB_OUTPUT
+          echo "image_tag=$IMAGE_TAG" >> $GITHUB_OUTPUT # Adiciona a tag como output
+
+      - name: Update image tag secret in infra repository
+        env:
+          GH_TOKEN: ${{ secrets.INFRA_REPO_PAT }} # Crie este secret no repositório srv-cad-usuarios
+          IMAGE_TAG: ${{ steps.build-image.outputs.image_tag }}
+          INFRA_REPO_OWNER_AND_NAME: "jaredejr/real-state-services-infra" # Seu repositório de infraestrutura
+          SECRET_NAME_IN_INFRA_REPO: "SRV_CAD_USUARIOS_IMAGE_TAG" # O nome do secret no repo de infra
+        run: |
+          echo "Updating ${SECRET_NAME_IN_INFRA_REPO} in ${INFRA_REPO_OWNER_AND_NAME} to ${IMAGE_TAG}"
+          gh secret set ${SECRET_NAME_IN_INFRA_REPO} -b "${IMAGE_TAG}" -R ${INFRA_REPO_OWNER_AND_NAME}
 
       - name: Download task definition
         id: download-task-def
