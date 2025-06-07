@@ -2,12 +2,8 @@ name: Deploy srv-cad-usuarios to ECS
 
 on:
   push:
-    branches-ignore:
-      - development # Não rodar em pushes para a branch development
-  pull_request:
     branches:
-      - main # Rodar em PRs para a branch master
-
+      - main
 
 permissions:
   id-token: write # Necessário para autenticação OIDC com AWS
