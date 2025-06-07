@@ -8,7 +8,9 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -22,16 +24,22 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class AuthController {
 
     private final AuthService authService;
     private final ClientAwareJwtDecoder jwtDecoder;
     private final InMemoryClientKeyRepository clientKeyRepository;
 
+    @Value("${app.name}")
+    private String applicationName;
+
+    @Value("${app.version}")
+    private String applicationVersion;
+
     @GetMapping("/health")
     public ResponseEntity<String> ok() {
-        return ResponseEntity.ok("ok");
+        return ResponseEntity.ok("OK - " + applicationName + " - Rlease: " + applicationVersion);
     }
 
     @PostMapping("/authenticate")
