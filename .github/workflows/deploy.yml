@@ -65,7 +65,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.INFRA_REPO_PAT }} # Crie este secret no repositório srv-cad-usuarios
           IMAGE_TAG: ${{ steps.build-image.outputs.image_tag }}
-          INFRA_REPO_OWNER_AND_NAME: "jaredejr/real-state-services-infra" # Seu repositório de infraestrutura
+          INFRA_REPO_OWNER_AND_NAME: "jaredejr/real-state-tf-services-infra" # Seu repositório de infraestrutura
           SECRET_NAME_IN_INFRA_REPO: "SRV_CAD_USUARIOS_IMAGE_TAG" # O nome do secret no repo de infra
         run: |
           echo "Updating ${SECRET_NAME_IN_INFRA_REPO} in ${INFRA_REPO_OWNER_AND_NAME} to ${IMAGE_TAG}"
