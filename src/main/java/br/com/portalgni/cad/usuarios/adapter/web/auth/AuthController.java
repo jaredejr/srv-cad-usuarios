@@ -42,6 +42,11 @@ public class AuthController {
         return ResponseEntity.ok("OK - " + applicationName + " - Rlease: " + applicationVersion);
     }
 
+    @GetMapping("/healthy")
+    public ResponseEntity<String> okay() {
+        return ResponseEntity.ok("OK - healthy");
+    }
+
     @PostMapping("/authenticate")
     public Map<String, String> authenticate(Authentication authentication,
                                             @Parameter(in = ParameterIn.HEADER, description = "Client ID", required = true, schema = @Schema(type = "string"))
