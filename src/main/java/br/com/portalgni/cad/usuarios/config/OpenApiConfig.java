@@ -1,12 +1,8 @@
 package br.com.portalgni.cad.usuarios.config;
 
-import br.com.portalgni.cad.usuarios.adapter.web.dto.RoleDto;
-import br.com.portalgni.cad.usuarios.adapter.web.dto.TipoUsuarioDto;
-import br.com.portalgni.cad.usuarios.adapter.web.dto.UsuarioDto;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springdoc.core.customizers.OpenApiCustomizer;
@@ -19,7 +15,6 @@ import org.springframework.context.annotation.Configuration;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Map;
 
 @Configuration
 @ComponentScan(basePackages = {"br.com.portalgni.cad.usuarios.adapter.web"})
