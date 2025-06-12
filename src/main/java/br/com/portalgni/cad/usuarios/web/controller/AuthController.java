@@ -1,6 +1,8 @@
-package br.com.portalgni.cad.usuarios.web.auth;
+package br.com.portalgni.cad.usuarios.web.controller;
 
 import br.com.portalgni.cad.usuarios.infra.repository.InMemoryClientKeyRepository;
+import br.com.portalgni.cad.usuarios.web.auth.AuthService;
+import br.com.portalgni.cad.usuarios.web.auth.ClientAwareJwtDecoder;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
@@ -9,8 +11,6 @@ import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtException;
@@ -30,21 +30,6 @@ public class AuthController {
     private final ClientAwareJwtDecoder jwtDecoder;
     private final InMemoryClientKeyRepository clientKeyRepository;
 
-    @Value("${app.name}")
-    private String applicationName;
-
-    @Value("${app.version}")
-    private String applicationVersion;
-
-    @GetMapping("/health")
-    public ResponseEntity<String> ok() {
-        return ResponseEntity.ok("OK - " + applicationName + " - Rlease: " + applicationVersion);
-    }
-
-    @GetMapping("/healthy")
-    public ResponseEntity<String> okay() {
-        return ResponseEntity.ok("OK - healthy");
-    }
 
     @PostMapping("/authenticate")
     public Map<String, String> authenticate(Authentication authentication,
