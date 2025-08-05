@@ -1,0 +1,23 @@
+package br.com.portalgni.cad.usuarios.web.converter;
+
+import br.com.portalgni.cad.usuarios.core.domain.User;
+import br.com.portalgni.cad.usuarios.web.dto.UsuarioDto;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
+
+@Component
+public class DtoToUsuarioConverter implements Converter<UsuarioDto, User> {
+    @Override
+    public User convert(UsuarioDto dto) {
+        return new User(dto.id(),
+                dto.nome(),
+                dto.email(),
+                null,
+                dto.addresses(),
+                dto.documents(),
+                dto.listaUserRoleContext(),
+                dto.dataCriacao(),
+                dto.ultimoAcesso(),
+                dto.status());
+    }
+}
