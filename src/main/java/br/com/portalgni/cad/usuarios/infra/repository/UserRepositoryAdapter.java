@@ -1,10 +1,10 @@
 package br.com.portalgni.cad.usuarios.infra.repository;
 
+import br.com.portalgni.cad.usuarios.core.domain.User;
 import br.com.portalgni.cad.usuarios.infra.converter.EntityToUsuarioConverter;
 import br.com.portalgni.cad.usuarios.infra.converter.TipoUsuarioToEntityConverter;
 import br.com.portalgni.cad.usuarios.infra.converter.UsuarioToEntityConverter;
-import br.com.portalgni.cad.usuarios.core.domain.TipoUsuario;
-import br.com.portalgni.cad.usuarios.core.domain.Usuario;
+import br.com.portalgni.cad.usuarios.core.domain.UserRoleContext;
 import br.com.portalgni.cad.usuarios.core.ports.UsuarioRepositoryPort;
 import lombok.AllArgsConstructor;
 import org.bson.types.ObjectId;
@@ -26,19 +26,19 @@ public class UsuarioRepositoryAdapter implements UsuarioRepositoryPort {
     TipoUsuarioToEntityConverter tipoUsuarioToEntity;
 
     @Override
-    public Optional<Usuario> findByEmail(String email) {
+    public Optional<User> findByEmail(String email) {
         return usuarioRepository.findByEmail(email).map(entityToUsuario::convert);
     }
 
     @Override
-    public Usuario salvarUsuario(Usuario usuario) {
+    public User salvarUsuario(User user) {
         return entityToUsuario.convert(
                 usuarioRepository.save(
-                        Objects.requireNonNull(usuarioToEntity.convert(usuario))));
+                        Objects.requireNonNull(usuarioToEntity.convert(user))));
     }
 
     @Override
-    public Set<Usuario> buscarUsuarioPorNome(String nome) {
+    public Set<User> buscarUsuarioPorNome(String nome) {
         return usuarioRepository.
                 findByNomeContainingIgnoreCase(nome)
                 .stream()
@@ -47,26 +47,26 @@ public class UsuarioRepositoryAdapter implements UsuarioRepositoryPort {
     }
 
     @Override
-    public Optional<Usuario> buscarUsuarioPorId(String id) {
+    public Optional<User> buscarUsuarioPorId(String id) {
         return usuarioRepository.findById(new ObjectId(id)).map(entityToUsuario::convert);
     }
 
     @Override
-    public Set<Usuario> buscarUsuarioPorTipo(TipoUsuario tipoUsuario) {
+    public Set<User> buscarUsuarioPorTipo(UserRoleContext userRoleContext) {
         return usuarioRepository
-                .findByTipoUsuarioContaining(tipoUsuarioToEntity.convert(tipoUsuario))
+                .findByTipoUsuarioContaining(tipoUsuarioToEntity.convert(userRoleContext))
                 .stream()
                 .map(entityToUsuario::convert)
                 .collect(Collectors.toSet());
     }
 
     @Override
-    public void excluirUsuario(Usuario usuario) {
-        usuarioRepository.delete(Objects.requireNonNull(usuarioToEntity.convert(usuario)));
+    public void excluirUsuario(User user) {
+        usuarioRepository.delete(Objects.requireNonNull(usuarioToEntity.convert(user)));
     }
 
     @Override
-    public Set<Usuario> buscarTodos() {
+    public Set<User> buscarTodos() {
         return usuarioRepository.findAll()
                 .stream()
                 .map(entityToUsuario::convert)
