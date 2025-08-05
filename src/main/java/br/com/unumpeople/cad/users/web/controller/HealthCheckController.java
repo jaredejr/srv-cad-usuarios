@@ -1,4 +1,4 @@
-package br.com.portalgni.cad.usuarios.web.controller;
+package br.com.unumpeople.cad.users.web.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;

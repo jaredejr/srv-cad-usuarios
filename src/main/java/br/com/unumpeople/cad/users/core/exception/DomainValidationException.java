@@ -1,4 +1,4 @@
-package br.com.portalgni.cad.usuarios.core.exception;
+package br.com.unumpeople.cad.users.core.exception;
 
 public class DomainValidationException extends RuntimeException{
     public DomainValidationException(String message) {

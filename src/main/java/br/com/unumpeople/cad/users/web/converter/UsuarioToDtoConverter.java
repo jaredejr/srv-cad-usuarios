@@ -1,7 +1,7 @@
-package br.com.portalgni.cad.usuarios.web.converter;
+package br.com.unumpeople.cad.users.web.converter;
 
-import br.com.portalgni.cad.usuarios.core.domain.User;
-import br.com.portalgni.cad.usuarios.web.dto.UsuarioDto;
+import br.com.unumpeople.cad.users.core.domain.User;
+import br.com.unumpeople.cad.users.web.dto.UsuarioDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 

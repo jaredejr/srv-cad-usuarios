@@ -1,4 +1,4 @@
-package br.com.portalgni.cad.usuarios.web.auth;
+package br.com.unumpeople.cad.users.web.auth;
 
 
 import jakarta.servlet.http.HttpServletRequest;

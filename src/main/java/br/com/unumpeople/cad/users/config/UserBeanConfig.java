@@ -1,10 +1,10 @@
-package br.com.portalgni.cad.usuarios.config;
+package br.com.unumpeople.cad.users.config;
 
-import br.com.portalgni.cad.usuarios.core.ports.RoleRepositoryPort;
-import br.com.portalgni.cad.usuarios.core.ports.UserRepositoryPort;
-import br.com.portalgni.cad.usuarios.core.ports.UserServicePort;
-import br.com.portalgni.cad.usuarios.core.service.UserService;
-import br.com.portalgni.cad.usuarios.core.validation.usuario.*;
+import br.com.unumpeople.cad.users.core.ports.RoleRepositoryPort;
+import br.com.unumpeople.cad.users.core.ports.UserRepositoryPort;
+import br.com.unumpeople.cad.users.core.ports.UserServicePort;
+import br.com.unumpeople.cad.users.core.service.UserService;
+import br.com.unumpeople.cad.users.core.validation.usuario.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

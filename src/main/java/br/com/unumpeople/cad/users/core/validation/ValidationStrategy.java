@@ -1,12 +1,12 @@
-package br.com.portalgni.cad.usuarios.core.validation;
+package br.com.unumpeople.cad.users.core.validation;
 
 
-import br.com.portalgni.cad.usuarios.core.exception.DomainValidationException;
+import br.com.unumpeople.cad.users.core.exception.DomainValidationException;
 
 import javax.management.InvalidAttributeValueException;
 
 public interface ValidationStrategy<T> {
 
-    public void validate(T obj) throws DomainValidationException;
+    void validate(T obj) throws DomainValidationException;
 
 }

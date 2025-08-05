@@ -1,8 +1,8 @@
-package br.com.portalgni.cad.usuarios.web.auth;
+package br.com.unumpeople.cad.users.web.auth;
 
-import br.com.portalgni.cad.usuarios.core.domain.User;
-import br.com.portalgni.cad.usuarios.core.exception.DomainValidationException;
-import br.com.portalgni.cad.usuarios.core.ports.UserServicePort;
+import br.com.unumpeople.cad.users.core.domain.User;
+import br.com.unumpeople.cad.users.core.exception.DomainValidationException;
+import br.com.unumpeople.cad.users.core.ports.UserServicePort;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,6 +31,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             log.error(e.getMessage());
             throw new UsernameNotFoundException(e.getMessage());
         }
-        return new UsuarioDetails(user);
+        return new br.com.unumpeople.cad.users.web.auth.UsuarioDetails(user);
     }
 }

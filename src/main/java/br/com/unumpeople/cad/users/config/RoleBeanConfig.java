@@ -1,9 +1,9 @@
-package br.com.portalgni.cad.usuarios.config;
+package br.com.unumpeople.cad.users.config;
 
-import br.com.portalgni.cad.usuarios.core.ports.RoleRepositoryPort;
-import br.com.portalgni.cad.usuarios.core.ports.RoleServicePort;
-import br.com.portalgni.cad.usuarios.core.service.RoleService;
-import br.com.portalgni.cad.usuarios.core.validation.role.*;
+import br.com.unumpeople.cad.users.core.ports.RoleRepositoryPort;
+import br.com.unumpeople.cad.users.core.ports.RoleServicePort;
+import br.com.unumpeople.cad.users.core.service.RoleService;
+import br.com.unumpeople.cad.users.core.validation.role.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

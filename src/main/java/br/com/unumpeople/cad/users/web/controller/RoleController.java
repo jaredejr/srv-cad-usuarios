@@ -1,12 +1,12 @@
-package br.com.portalgni.cad.usuarios.web.controller;
+package br.com.unumpeople.cad.users.web.controller;
 
-import br.com.portalgni.cad.usuarios.web.converter.DtoToNewRoleConverter;
-import br.com.portalgni.cad.usuarios.web.converter.DtoToRoleConverter;
-import br.com.portalgni.cad.usuarios.web.converter.RoleToDtoConverter;
-import br.com.portalgni.cad.usuarios.web.dto.RoleDto;
+import br.com.unumpeople.cad.users.web.converter.DtoToNewRoleConverter;
+import br.com.unumpeople.cad.users.web.converter.DtoToRoleConverter;
+import br.com.unumpeople.cad.users.web.converter.RoleToDtoConverter;
+import br.com.unumpeople.cad.users.web.dto.RoleDto;
 
-import br.com.portalgni.cad.usuarios.core.domain.Role;
-import br.com.portalgni.cad.usuarios.core.ports.RoleServicePort;
+import br.com.unumpeople.cad.users.core.domain.Role;
+import br.com.unumpeople.cad.users.core.ports.RoleServicePort;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

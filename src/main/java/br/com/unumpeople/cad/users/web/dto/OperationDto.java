@@ -1,4 +1,4 @@
-package br.com.portalgni.cad.usuarios.web.dto;
+package br.com.unumpeople.cad.users.web.dto;
 
 public record OperationDto(
         String name,

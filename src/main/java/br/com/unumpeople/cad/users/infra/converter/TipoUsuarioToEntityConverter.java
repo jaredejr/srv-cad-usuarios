@@ -1,7 +1,7 @@
-package br.com.portalgni.cad.usuarios.infra.converter;
+package br.com.unumpeople.cad.users.infra.converter;
 
-import br.com.portalgni.cad.usuarios.infra.entity.TipoUsuarioEntity;
-import br.com.portalgni.cad.usuarios.core.domain.UserRoleContext;
+import br.com.unumpeople.cad.users.infra.entity.TipoUsuarioEntity;
+import br.com.unumpeople.cad.users.core.domain.UserRoleContext;
 import org.bson.types.ObjectId;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

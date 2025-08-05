@@ -1,7 +1,7 @@
-package br.com.portalgni.cad.usuarios.infra.converter;
+package br.com.unumpeople.cad.users.infra.converter;
 
-import br.com.portalgni.cad.usuarios.infra.entity.TipoUsuarioEntity;
-import br.com.portalgni.cad.usuarios.core.domain.UserRoleContext;
+import br.com.unumpeople.cad.users.infra.entity.TipoUsuarioEntity;
+import br.com.unumpeople.cad.users.core.domain.UserRoleContext;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.core.convert.converter.Converter;
@@ -20,7 +20,7 @@ public class EntityToTipoUsuarioConverter implements Converter<TipoUsuarioEntity
     public UserRoleContext convert(TipoUsuarioEntity entity) {
         return new UserRoleContext(
                 entityToRole.convert(Objects.requireNonNull(objectIdToRoleEntity.convert(entity.getRole()))),
-                ObjectUtils.anyNull(entity.getContexto())
+                null==entity.getContexto()
                         ?null
                         :entity.getContexto().toHexString()
         );

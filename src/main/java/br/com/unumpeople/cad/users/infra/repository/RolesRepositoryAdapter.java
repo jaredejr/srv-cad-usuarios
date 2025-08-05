@@ -1,10 +1,10 @@
-package br.com.portalgni.cad.usuarios.infra.repository;
+package br.com.unumpeople.cad.users.infra.repository;
 
-import br.com.portalgni.cad.usuarios.infra.converter.EntityToRoleConverter;
-import br.com.portalgni.cad.usuarios.infra.converter.RoleToEntityConverter;
-import br.com.portalgni.cad.usuarios.infra.entity.RoleEntity;
-import br.com.portalgni.cad.usuarios.core.domain.Role;
-import br.com.portalgni.cad.usuarios.core.ports.RoleRepositoryPort;
+import br.com.unumpeople.cad.users.infra.converter.EntityToRoleConverter;
+import br.com.unumpeople.cad.users.infra.converter.RoleToEntityConverter;
+import br.com.unumpeople.cad.users.infra.entity.RoleEntity;
+import br.com.unumpeople.cad.users.core.domain.Role;
+import br.com.unumpeople.cad.users.core.ports.RoleRepositoryPort;
 import lombok.AllArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Component;
@@ -37,7 +37,7 @@ public class RolesRepositoryAdapter implements RoleRepositoryPort {
 
     @Override
     public Optional<Role> getRoleByName(String name){
-        return rolesRepository.findByNome(name).map(entityToRole::convert);
+        return rolesRepository.findByName(name).map(entityToRole::convert);
     }
 
     @Override

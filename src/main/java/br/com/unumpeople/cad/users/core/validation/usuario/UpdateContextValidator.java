@@ -1,9 +1,9 @@
-package br.com.portalgni.cad.usuarios.core.validation.usuario;
+package br.com.unumpeople.cad.users.core.validation.usuario;
 
-import br.com.portalgni.cad.usuarios.core.domain.Operation;
-import br.com.portalgni.cad.usuarios.core.domain.UserRoleContext;
-import br.com.portalgni.cad.usuarios.core.domain.User;
-import br.com.portalgni.cad.usuarios.core.ports.UserRepositoryPort;
+import br.com.unumpeople.cad.users.core.domain.Operation;
+import br.com.unumpeople.cad.users.core.domain.UserRoleContext;
+import br.com.unumpeople.cad.users.core.domain.User;
+import br.com.unumpeople.cad.users.core.ports.UserRepositoryPort;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

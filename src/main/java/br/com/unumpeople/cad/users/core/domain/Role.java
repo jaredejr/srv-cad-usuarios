@@ -1,6 +1,6 @@
-package br.com.portalgni.cad.usuarios.core.domain;
+package br.com.unumpeople.cad.users.core.domain;
 
-import br.com.portalgni.cad.usuarios.core.exception.DomainValidationException;
+import br.com.unumpeople.cad.users.core.exception.DomainValidationException;
 import lombok.*;
 
 import java.util.List;

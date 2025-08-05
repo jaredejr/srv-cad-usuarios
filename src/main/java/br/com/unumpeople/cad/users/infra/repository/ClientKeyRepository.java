@@ -1,4 +1,4 @@
-package br.com.portalgni.cad.usuarios.infra.repository;
+package br.com.unumpeople.cad.users.infra.repository;
 
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;

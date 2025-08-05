@@ -1,4 +1,4 @@
-package br.com.portalgni.cad.usuarios.core.domain;
+package br.com.unumpeople.cad.users.core.domain;
 
 import lombok.*;
 

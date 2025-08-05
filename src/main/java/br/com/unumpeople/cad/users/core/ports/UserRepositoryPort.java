@@ -1,7 +1,7 @@
-package br.com.portalgni.cad.usuarios.core.ports;
+package br.com.unumpeople.cad.users.core.ports;
 
-import br.com.portalgni.cad.usuarios.core.domain.UserRoleContext;
-import br.com.portalgni.cad.usuarios.core.domain.User;
+import br.com.unumpeople.cad.users.core.domain.UserRoleContext;
+import br.com.unumpeople.cad.users.core.domain.User;
 
 import java.util.Optional;
 import java.util.Set;

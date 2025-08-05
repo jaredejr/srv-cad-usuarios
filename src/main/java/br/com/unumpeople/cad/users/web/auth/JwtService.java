@@ -1,6 +1,6 @@
-package br.com.portalgni.cad.usuarios.web.auth;
+package br.com.unumpeople.cad.users.web.auth;
 
-import br.com.portalgni.cad.usuarios.infra.repository.InMemoryClientKeyRepository;
+import br.com.unumpeople.cad.users.infra.repository.InMemoryClientKeyRepository;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;

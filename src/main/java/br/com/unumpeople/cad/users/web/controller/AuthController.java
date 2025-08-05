@@ -1,8 +1,8 @@
-package br.com.portalgni.cad.usuarios.web.controller;
+package br.com.unumpeople.cad.users.web.controller;
 
-import br.com.portalgni.cad.usuarios.infra.repository.InMemoryClientKeyRepository;
-import br.com.portalgni.cad.usuarios.web.auth.AuthService;
-import br.com.portalgni.cad.usuarios.web.auth.ClientAwareJwtDecoder;
+import br.com.unumpeople.cad.users.infra.repository.InMemoryClientKeyRepository;
+import br.com.unumpeople.cad.users.web.auth.AuthService;
+import br.com.unumpeople.cad.users.web.auth.ClientAwareJwtDecoder;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;

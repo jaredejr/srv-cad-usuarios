@@ -1,7 +1,7 @@
-package br.com.portalgni.cad.usuarios.infra.converter;
+package br.com.unumpeople.cad.users.infra.converter;
 
-import br.com.portalgni.cad.usuarios.core.domain.Address;
-import br.com.portalgni.cad.usuarios.infra.entity.EnderecoEntity;
+import br.com.unumpeople.cad.users.core.domain.Address;
+import br.com.unumpeople.cad.users.infra.entity.EnderecoEntity;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,7 @@
-package br.com.portalgni.cad.usuarios.infra.repository;
+package br.com.unumpeople.cad.users.infra.repository;
 
-import br.com.portalgni.cad.usuarios.infra.entity.TipoUsuarioEntity;
-import br.com.portalgni.cad.usuarios.infra.entity.UsuarioEntity;
+import br.com.unumpeople.cad.users.infra.entity.TipoUsuarioEntity;
+import br.com.unumpeople.cad.users.infra.entity.UsuarioEntity;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;

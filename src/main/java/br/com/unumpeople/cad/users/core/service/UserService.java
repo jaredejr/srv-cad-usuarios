@@ -1,12 +1,12 @@
-package br.com.portalgni.cad.usuarios.core.service;
+package br.com.unumpeople.cad.users.core.service;
 
-import br.com.portalgni.cad.usuarios.core.domain.UserRoleContext;
-import br.com.portalgni.cad.usuarios.core.domain.User;
-import br.com.portalgni.cad.usuarios.core.exception.DomainValidationException;
-import br.com.portalgni.cad.usuarios.core.ports.RoleRepositoryPort;
-import br.com.portalgni.cad.usuarios.core.ports.UserRepositoryPort;
-import br.com.portalgni.cad.usuarios.core.ports.UserServicePort;
-import br.com.portalgni.cad.usuarios.core.validation.usuario.UserValidator;
+import br.com.unumpeople.cad.users.core.domain.UserRoleContext;
+import br.com.unumpeople.cad.users.core.domain.User;
+import br.com.unumpeople.cad.users.core.exception.DomainValidationException;
+import br.com.unumpeople.cad.users.core.ports.RoleRepositoryPort;
+import br.com.unumpeople.cad.users.core.ports.UserRepositoryPort;
+import br.com.unumpeople.cad.users.core.ports.UserServicePort;
+import br.com.unumpeople.cad.users.core.validation.usuario.UserValidator;
 import lombok.AllArgsConstructor;
 
 import java.util.Optional;

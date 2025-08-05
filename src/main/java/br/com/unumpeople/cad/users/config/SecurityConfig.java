@@ -1,8 +1,8 @@
-package br.com.portalgni.cad.usuarios.config;
+package br.com.unumpeople.cad.users.config;
 
 
-import br.com.portalgni.cad.usuarios.infra.repository.InMemoryClientKeyRepository;
-import br.com.portalgni.cad.usuarios.web.auth.ClientAwareJwtDecoder;
+import br.com.unumpeople.cad.users.infra.repository.InMemoryClientKeyRepository;
+import br.com.unumpeople.cad.users.web.auth.ClientAwareJwtDecoder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

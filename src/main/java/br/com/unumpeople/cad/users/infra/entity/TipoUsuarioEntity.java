@@ -1,4 +1,4 @@
-package br.com.portalgni.cad.usuarios.infra.entity;
+package br.com.unumpeople.cad.users.infra.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

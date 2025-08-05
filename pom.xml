@@ -8,10 +8,10 @@
 		<version>3.3.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.com.portalgni</groupId>
-	<artifactId>cad.usuarios</artifactId>
+	<groupId>br.com.unumpeople</groupId>
+	<artifactId>srv-cad-users</artifactId>
 	<version>0.0.5-SNAPSHOT</version>
-	<name>srv-cad-usuarios</name>
+	<name>srv-cad-users</name>
 	<description>serviço para cadastro de usuários</description>
 	<url/>
 	<licenses>

@@ -1,8 +1,8 @@
-package br.com.portalgni.cad.usuarios.web.converter;
+package br.com.unumpeople.cad.users.web.converter;
 
-import br.com.portalgni.cad.usuarios.core.domain.Operation;
-import br.com.portalgni.cad.usuarios.core.domain.Role;
-import br.com.portalgni.cad.usuarios.web.dto.RoleDto;
+import br.com.unumpeople.cad.users.core.domain.Operation;
+import br.com.unumpeople.cad.users.core.domain.Role;
+import br.com.unumpeople.cad.users.web.dto.RoleDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 

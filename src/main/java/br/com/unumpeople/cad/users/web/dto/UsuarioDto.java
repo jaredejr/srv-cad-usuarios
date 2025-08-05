@@ -1,8 +1,8 @@
-package br.com.portalgni.cad.usuarios.web.dto;
+package br.com.unumpeople.cad.users.web.dto;
 
-import br.com.portalgni.cad.usuarios.core.domain.Document;
-import br.com.portalgni.cad.usuarios.core.domain.Address;
-import br.com.portalgni.cad.usuarios.core.domain.UserRoleContext;
+import br.com.unumpeople.cad.users.core.domain.Document;
+import br.com.unumpeople.cad.users.core.domain.Address;
+import br.com.unumpeople.cad.users.core.domain.UserRoleContext;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDateTime;

@@ -1,13 +1,13 @@
-package br.com.portalgni.cad.usuarios.web.controller;
+package br.com.unumpeople.cad.users.web.controller;
 
 
-import br.com.portalgni.cad.usuarios.core.domain.User;
-import br.com.portalgni.cad.usuarios.core.ports.UserServicePort;
-import br.com.portalgni.cad.usuarios.web.converter.DtoToNewUsuarioConverter;
-import br.com.portalgni.cad.usuarios.web.converter.DtoToUsuarioConverter;
-import br.com.portalgni.cad.usuarios.web.converter.UsuarioToDtoConverter;
-import br.com.portalgni.cad.usuarios.web.dto.TipoUsuarioDto;
-import br.com.portalgni.cad.usuarios.web.dto.UsuarioDto;
+import br.com.unumpeople.cad.users.core.domain.User;
+import br.com.unumpeople.cad.users.core.ports.UserServicePort;
+import br.com.unumpeople.cad.users.web.converter.DtoToNewUsuarioConverter;
+import br.com.unumpeople.cad.users.web.converter.DtoToUsuarioConverter;
+import br.com.unumpeople.cad.users.web.converter.UsuarioToDtoConverter;
+import br.com.unumpeople.cad.users.web.dto.TipoUsuarioDto;
+import br.com.unumpeople.cad.users.web.dto.UsuarioDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

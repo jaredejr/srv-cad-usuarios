@@ -1,8 +1,8 @@
-package br.com.portalgni.cad.usuarios.web.auth;
+package br.com.unumpeople.cad.users.web.auth;
 
-import br.com.portalgni.cad.usuarios.core.domain.Operation;
-import br.com.portalgni.cad.usuarios.core.domain.UserRoleContext;
-import br.com.portalgni.cad.usuarios.core.domain.User;
+import br.com.unumpeople.cad.users.core.domain.Operation;
+import br.com.unumpeople.cad.users.core.domain.UserRoleContext;
+import br.com.unumpeople.cad.users.core.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;

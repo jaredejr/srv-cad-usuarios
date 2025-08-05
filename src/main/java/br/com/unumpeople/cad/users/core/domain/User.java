@@ -1,6 +1,6 @@
-package br.com.portalgni.cad.usuarios.core.domain;
+package br.com.unumpeople.cad.users.core.domain;
 
-import br.com.portalgni.cad.usuarios.core.exception.DomainValidationException;
+import br.com.unumpeople.cad.users.core.exception.DomainValidationException;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -11,14 +11,14 @@ public class User {
 
     private String id;
     private String name;
-    private Email email;
+    private final Email email;
     private Password password;
-    private Set<Address> addressList;
-    private Set<Document> documents;
-    private Set<UserRoleContext> userRoleContextList;
-    private LocalDateTime creationDate;
+    private final Set<Address> addressList;
+    private final Set<Document> documents;
+    private final Set<UserRoleContext> userRoleContextList;
+    private final LocalDateTime creationDate;
     private LocalDateTime lastAccess;
-    private Status status;
+    private final Status status;
 
     public User(String email, String name, Set<Address> addressList, Set<Document> documents, Set<UserRoleContext> userRoleContextList, String status) {
 

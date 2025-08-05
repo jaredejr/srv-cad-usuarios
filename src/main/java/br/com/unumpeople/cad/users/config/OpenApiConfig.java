@@ -1,4 +1,4 @@
-package br.com.portalgni.cad.usuarios.config;
+package br.com.unumpeople.cad.users.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -17,7 +17,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Configuration
-@ComponentScan(basePackages = {"br.com.portalgni.cad.usuarios.adapter.web"})
+@ComponentScan(basePackages = {"br.com.unumpeople.cad.users.adapter.web"})
 public class OpenApiConfig {
 
     @Value("${app.name}")

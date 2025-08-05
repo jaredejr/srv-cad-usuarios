@@ -1,11 +1,11 @@
-package br.com.portalgni.cad.usuarios.core.domain;
+package br.com.unumpeople.cad.users.core.domain;
 
-import br.com.portalgni.cad.usuarios.core.exception.DomainValidationException;
+import br.com.unumpeople.cad.users.core.exception.DomainValidationException;
 import lombok.Getter;
 
 @Getter
 public class Password {
-    private String value;
+    private final String value;
 
     public Password(String value) {
         validatePassword(value);

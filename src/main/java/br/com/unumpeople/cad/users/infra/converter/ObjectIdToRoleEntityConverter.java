@@ -1,7 +1,7 @@
-package br.com.portalgni.cad.usuarios.infra.converter;
+package br.com.unumpeople.cad.users.infra.converter;
 
-import br.com.portalgni.cad.usuarios.infra.repository.RolesRepository;
-import br.com.portalgni.cad.usuarios.infra.entity.RoleEntity;
+import br.com.unumpeople.cad.users.infra.repository.RolesRepository;
+import br.com.unumpeople.cad.users.infra.entity.RoleEntity;
 import lombok.AllArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.core.convert.converter.Converter;

@@ -1,7 +1,7 @@
-package br.com.portalgni.cad.usuarios.core.validation.usuario;
+package br.com.unumpeople.cad.users.core.validation.usuario;
 
-import br.com.portalgni.cad.usuarios.core.domain.User;
-import br.com.portalgni.cad.usuarios.core.validation.Validator;
+import br.com.unumpeople.cad.users.core.domain.User;
+import br.com.unumpeople.cad.users.core.validation.Validator;
 
 import java.util.List;
 

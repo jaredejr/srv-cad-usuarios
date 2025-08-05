@@ -1,4 +1,4 @@
-package br.com.portalgni.cad.usuarios.infra.entity;
+package br.com.unumpeople.cad.users.infra.entity;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;

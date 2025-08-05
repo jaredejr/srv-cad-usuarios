@@ -1,6 +1,6 @@
-package br.com.portalgni.cad.usuarios.config;
+package br.com.unumpeople.cad.users.config;
 
-import br.com.portalgni.cad.usuarios.core.exception.DomainValidationException;
+import br.com.unumpeople.cad.users.core.exception.DomainValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

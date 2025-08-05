@@ -1,4 +1,4 @@
-package br.com.portalgni.cad.usuarios.infra.repository;
+package br.com.unumpeople.cad.users.infra.repository;
 
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;

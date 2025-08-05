@@ -1,4 +1,4 @@
-package br.com.portalgni.cad.usuarios.core.validation;
+package br.com.unumpeople.cad.users.core.validation;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
-package br.com.portalgni.cad.usuarios.infra.repository;
+package br.com.unumpeople.cad.users.infra.repository;
 
-import br.com.portalgni.cad.usuarios.core.domain.User;
-import br.com.portalgni.cad.usuarios.infra.converter.EntityToUsuarioConverter;
-import br.com.portalgni.cad.usuarios.infra.converter.TipoUsuarioToEntityConverter;
-import br.com.portalgni.cad.usuarios.infra.converter.UsuarioToEntityConverter;
-import br.com.portalgni.cad.usuarios.core.domain.UserRoleContext;
-import br.com.portalgni.cad.usuarios.core.ports.UserRepositoryPort;
+import br.com.unumpeople.cad.users.core.domain.User;
+import br.com.unumpeople.cad.users.infra.converter.EntityToUsuarioConverter;
+import br.com.unumpeople.cad.users.infra.converter.TipoUsuarioToEntityConverter;
+import br.com.unumpeople.cad.users.infra.converter.UsuarioToEntityConverter;
+import br.com.unumpeople.cad.users.core.domain.UserRoleContext;
+import br.com.unumpeople.cad.users.core.ports.UserRepositoryPort;
 import lombok.AllArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Component;

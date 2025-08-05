@@ -1,11 +1,11 @@
-package br.com.portalgni.cad.usuarios.core.validation.usuario;
+package br.com.unumpeople.cad.users.core.validation.usuario;
 
 
-import br.com.portalgni.cad.usuarios.core.domain.UserRoleContext;
-import br.com.portalgni.cad.usuarios.core.domain.User;
-import br.com.portalgni.cad.usuarios.core.exception.DomainValidationException;
-import br.com.portalgni.cad.usuarios.core.ports.RoleRepositoryPort;
-import br.com.portalgni.cad.usuarios.core.validation.ValidationStrategy;
+import br.com.unumpeople.cad.users.core.domain.UserRoleContext;
+import br.com.unumpeople.cad.users.core.domain.User;
+import br.com.unumpeople.cad.users.core.exception.DomainValidationException;
+import br.com.unumpeople.cad.users.core.ports.RoleRepositoryPort;
+import br.com.unumpeople.cad.users.core.validation.ValidationStrategy;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

@@ -1,7 +1,7 @@
-package br.com.portalgni.cad.usuarios.infra.converter;
+package br.com.unumpeople.cad.users.infra.converter;
 
-import br.com.portalgni.cad.usuarios.core.domain.*;
-import br.com.portalgni.cad.usuarios.infra.entity.UsuarioEntity;
+import br.com.unumpeople.cad.users.core.domain.*;
+import br.com.unumpeople.cad.users.infra.entity.UsuarioEntity;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.core.convert.converter.Converter;
