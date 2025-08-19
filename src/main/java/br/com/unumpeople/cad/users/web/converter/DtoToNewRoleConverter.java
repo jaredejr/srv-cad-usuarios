@@ -13,7 +13,7 @@ public class DtoToNewRoleConverter implements Converter<RoleDto, Role> {
         return new Role(
                 roleDto.name(),
                 roleDto.description(),
-                roleDto.operations().stream().map(operationDto -> new Operation(operationDto.name(), operationDto.description())).toList()
+                roleDto.operations().stream().map(operationDto -> new Operation(operationDto.name())).toList()
         );
     }
 }

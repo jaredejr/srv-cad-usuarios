@@ -1,4 +1,4 @@
-package br.com.unumpeople.cad.users.core.validation.usuario;
+package br.com.unumpeople.cad.users.core.validation.user;
 
 import br.com.unumpeople.cad.users.core.domain.User;
 import br.com.unumpeople.cad.users.core.validation.Validator;

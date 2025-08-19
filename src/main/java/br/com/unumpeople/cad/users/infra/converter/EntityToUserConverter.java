@@ -1,7 +1,7 @@
 package br.com.unumpeople.cad.users.infra.converter;
 
 import br.com.unumpeople.cad.users.core.domain.*;
-import br.com.unumpeople.cad.users.infra.entity.UsuarioEntity;
+import br.com.unumpeople.cad.users.infra.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.core.convert.converter.Converter;
@@ -12,45 +12,45 @@ import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
-public class EntityToUsuarioConverter implements Converter<UsuarioEntity, User> {
+public class EntityToUserConverter implements Converter<UserEntity, User> {
 
     ObjectIdToRoleEntityConverter objectIdToRoleEntity;
     EntityToRoleConverter entityToRole;
-    EntityToEnderecoConverter entityToEndereco;
+    EntityToAddressConverter entityToEndereco;
 
     @Override
-    public User convert(UsuarioEntity entity) {
+    public User convert(UserEntity entity) {
         return new User(entity.getId().toHexString(),
-                entity.getNome(),
+                entity.getName(),
                 entity.getEmail(),
-                entity.getSenha(),
-                ObjectUtils.anyNotNull(entity.getEnderecos())
-                        ? entity.getEnderecos()
+                entity.getPassword(),
+                ObjectUtils.anyNotNull(entity.getAddressList())
+                        ? entity.getAddressList()
                                 .stream()
                                 .map(entityToEndereco::convert)
                                 .collect(Collectors.toSet())
                         : null,
-                ObjectUtils.anyNotNull(entity.getDocumentos())
-                        ? entity.getDocumentos()
+                ObjectUtils.anyNotNull(entity.getDocuments())
+                        ? entity.getDocuments()
                                 .stream()
                                 .map(documentoEntity -> new Document(
-                                        documentoEntity.getNumero(),
-                                        documentoEntity.getTipoDocumento(),
-                                        documentoEntity.getEmissao(),
-                                        documentoEntity.getValidade(),
-                                        documentoEntity.getEmissor()))
+                                        documentoEntity.getNumber(),
+                                        documentoEntity.getDocumentType(),
+                                        documentoEntity.getIssueDate(),
+                                        documentoEntity.getExpirationDate(),
+                                        documentoEntity.getIssuer()))
                                 .collect(Collectors.toSet())
                         : null,
-                entity.getTipoUsuario()
+                entity.getUserRoleContextList()
                         .stream()
                         .map(tipoUsuarioEntity -> new UserRoleContext(
                                 entityToRole.convert(Objects.requireNonNull(
                                                 objectIdToRoleEntity.convert(tipoUsuarioEntity.getRole()))),
-                                ObjectUtils.anyNotNull(tipoUsuarioEntity.getContexto())
-                                        ? tipoUsuarioEntity.getContexto().toHexString() : null))
+                                ObjectUtils.anyNotNull(tipoUsuarioEntity.getContext())
+                                        ? tipoUsuarioEntity.getContext().toHexString() : null))
                         .collect(Collectors.toSet()),
-                entity.getDataCriacao(),
-                entity.getUltimoAcesso(),
+                entity.getCreationDate(),
+                entity.getLastAccess(),
                 entity.getStatus()
         );
     }

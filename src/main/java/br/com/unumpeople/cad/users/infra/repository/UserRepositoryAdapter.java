@@ -1,9 +1,9 @@
 package br.com.unumpeople.cad.users.infra.repository;
 
 import br.com.unumpeople.cad.users.core.domain.User;
-import br.com.unumpeople.cad.users.infra.converter.EntityToUsuarioConverter;
-import br.com.unumpeople.cad.users.infra.converter.TipoUsuarioToEntityConverter;
-import br.com.unumpeople.cad.users.infra.converter.UsuarioToEntityConverter;
+import br.com.unumpeople.cad.users.infra.converter.EntityToUserConverter;
+import br.com.unumpeople.cad.users.infra.converter.UserRoleContextToEntityConverter;
+import br.com.unumpeople.cad.users.infra.converter.UserToEntityConverter;
 import br.com.unumpeople.cad.users.core.domain.UserRoleContext;
 import br.com.unumpeople.cad.users.core.ports.UserRepositoryPort;
 import lombok.AllArgsConstructor;
@@ -20,26 +20,26 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class UserRepositoryAdapter implements UserRepositoryPort {
 
-    UsuarioRepository usuarioRepository;
-    EntityToUsuarioConverter entityToUsuario;
-    UsuarioToEntityConverter usuarioToEntity;
-    TipoUsuarioToEntityConverter tipoUsuarioToEntity;
+    UserRepository userRepository;
+    EntityToUserConverter entityToUsuario;
+    UserToEntityConverter usuarioToEntity;
+    UserRoleContextToEntityConverter tipoUsuarioToEntity;
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return usuarioRepository.findByEmail(email).map(entityToUsuario::convert);
+        return userRepository.findByEmail(email).map(entityToUsuario::convert);
     }
 
     @Override
-    public User salvarUsuario(User user) {
+    public User saveUser(User user) {
         return entityToUsuario.convert(
-                usuarioRepository.save(
+                userRepository.save(
                         Objects.requireNonNull(usuarioToEntity.convert(user))));
     }
 
     @Override
-    public Set<User> buscarUsuarioPorNome(String nome) {
-        return usuarioRepository.
+    public Set<User> getUserByName(String nome) {
+        return userRepository.
                 findByNomeContainingIgnoreCase(nome)
                 .stream()
                 .map(entityToUsuario::convert)
@@ -47,27 +47,27 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
     }
 
     @Override
-    public Optional<User> buscarUsuarioPorId(String id) {
-        return usuarioRepository.findById(new ObjectId(id)).map(entityToUsuario::convert);
+    public Optional<User> getUserById(String id) {
+        return userRepository.findById(new ObjectId(id)).map(entityToUsuario::convert);
     }
 
     @Override
-    public Set<User> buscarUsuarioPorTipo(UserRoleContext userRoleContext) {
-        return usuarioRepository
-                .findByTipoUsuarioContaining(tipoUsuarioToEntity.convert(userRoleContext))
+    public Set<User> findByUserRoleContext(UserRoleContext userRoleContext) {
+        return userRepository
+                .findByUserRoleContext(tipoUsuarioToEntity.convert(userRoleContext))
                 .stream()
                 .map(entityToUsuario::convert)
                 .collect(Collectors.toSet());
     }
 
     @Override
-    public void excluirUsuario(User user) {
-        usuarioRepository.delete(Objects.requireNonNull(usuarioToEntity.convert(user)));
+    public void deleteUser(User user) {
+        userRepository.delete(Objects.requireNonNull(usuarioToEntity.convert(user)));
     }
 
     @Override
-    public Set<User> buscarTodos() {
-        return usuarioRepository.findAll()
+    public Set<User> findAll() {
+        return userRepository.findAll()
                 .stream()
                 .map(entityToUsuario::convert)
                 .collect(Collectors.toSet());

@@ -16,18 +16,18 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "users")
-public class UsuarioEntity {
+public class UserEntity {
 
     @Id
     private ObjectId id;
-    private String nome;
+    private String name;
     private String email;
-    private String senha;
-    private Set<EnderecoEntity> enderecos;
-    private Set<DocumentoEntity> documentos;
-    private Set<TipoUsuarioEntity> tipoUsuario;
-    private LocalDateTime dataCriacao;
-    private LocalDateTime ultimoAcesso;
+    private String password;
+    private Set<AddressEntity> addressList;
+    private Set<DocumentEntity> documents;
+    private Set<UserRoleContextEntity> userRoleContextList;
+    private LocalDateTime creationDate;
+    private LocalDateTime lastAccess;
     private String status;
 
 }

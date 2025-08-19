@@ -48,7 +48,7 @@ public class User {
     }
 
     private void validateAndSetName(String name) {
-        if (null == this.name || this.name.isEmpty()) throw new DomainValidationException("O nome não deve ser nulo ou vazio");
+        if (null == this.name || this.name.isEmpty()) throw new DomainValidationException("O name não deve ser nulo ou vazio");
         this.name = name;
     }
 

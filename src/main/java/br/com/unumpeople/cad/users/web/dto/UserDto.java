@@ -8,14 +8,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-@Schema(name = "UsuarioDto", description = "Representação de um usuário")
-public record UsuarioDto(
+@Schema(name = "UserDto", description = "Representação de um usuário")
+public record UserDto(
 
         @Schema(description = "ID do usuário (ObjectId em formato hexadecimal)", hidden = true)
         String id,
 
         @Schema(description = "Nome do usuário")
-        String nome,
+        String name,
 
         @Schema(description = "Email do usuário")
         String email,
@@ -27,13 +27,13 @@ public record UsuarioDto(
         Set<Document> documents,
 
         @Schema(description = "Tipos de acesso do usuário")
-        Set<UserRoleContext> listaUserRoleContext,
+        Set<UserRoleContext> userRoleContextlist,
 
         @Schema(description = "Data de criação do usuário")
-        LocalDateTime dataCriacao,
+        LocalDateTime creationDate,
 
         @Schema(description = "Último acesso do usuário")
-        LocalDateTime ultimoAcesso,
+        LocalDateTime lastAcess,
 
         @Schema(description = "Status do usuário")
         String status

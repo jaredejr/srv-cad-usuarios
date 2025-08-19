@@ -1,4 +1,4 @@
-package br.com.unumpeople.cad.users.core.validation.usuario;
+package br.com.unumpeople.cad.users.core.validation.user;
 
 import br.com.unumpeople.cad.users.core.domain.Operation;
 import br.com.unumpeople.cad.users.core.domain.UserRoleContext;
@@ -23,10 +23,10 @@ public class UpdateContextValidator {
 
         if (isUserEditingHimself(requesterId, editedUserId)) return Boolean.TRUE;
 
-        User requester = usuarioRepository.buscarUsuarioPorId(requesterId).orElseThrow();
+        User requester = usuarioRepository.getUserById(requesterId).orElseThrow();
         if (isUserSystemAdmin(requester)) return Boolean.TRUE;
 
-        User editedUser = usuarioRepository.buscarUsuarioPorId(editedUserId).orElseThrow();
+        User editedUser = usuarioRepository.getUserById(editedUserId).orElseThrow();
 
         for (String key: AUTHORIZED_RELATIONS.keySet()){
             List<String> requesterContext = requester.getUserRoleContextList()

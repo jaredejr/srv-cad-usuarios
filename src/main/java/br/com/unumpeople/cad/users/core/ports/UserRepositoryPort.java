@@ -9,15 +9,15 @@ import java.util.Set;
 public interface UserRepositoryPort {
     Optional<User> findByEmail(String email);
 
-    User salvarUsuario(User user);
+    User saveUser(User user);
 
-    Set<User> buscarUsuarioPorNome(String nome);
+    Set<User> getUserByName(String nome);
 
-    Optional<User> buscarUsuarioPorId(String id);
+    Optional<User> getUserById(String id);
 
-    Set<User> buscarUsuarioPorTipo(UserRoleContext userRoleContext);
+    Set<User> findByUserRoleContext(UserRoleContext userRoleContext);
 
-    void excluirUsuario(User user);
+    void deleteUser(User user);
 
-    Set<User> buscarTodos();
+    Set<User> findAll();
 }

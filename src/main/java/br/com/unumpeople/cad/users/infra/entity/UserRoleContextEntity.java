@@ -6,8 +6,8 @@ import org.bson.types.ObjectId;
 
 @Data
 @AllArgsConstructor
-public class TipoUsuarioEntity {
+public class UserRoleContextEntity {
 
     private ObjectId role;
-    private ObjectId contexto;
+    private ObjectId context;
 }

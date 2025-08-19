@@ -1,7 +1,6 @@
 package br.com.unumpeople.cad.users.infra.converter;
 
 import br.com.unumpeople.cad.users.core.domain.Operation;
-import br.com.unumpeople.cad.users.infra.entity.OperationEntity;
 import br.com.unumpeople.cad.users.infra.entity.RoleEntity;
 import br.com.unumpeople.cad.users.core.domain.Role;
 import org.springframework.core.convert.converter.Converter;
@@ -21,7 +20,7 @@ public class EntityToRoleConverter implements Converter<RoleEntity, Role> {
         );
     }
 
-    private static List<Operation> getOperationList(List<OperationEntity> operationEntities) {
-        return operationEntities.stream().map(operationEntity -> new Operation(operationEntity.name(), operationEntity.description())).toList();
+    private static List<Operation> getOperationList(List<String> operationEntities) {
+        return operationEntities.stream().map(Operation::new).toList();
     }
 }

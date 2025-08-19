@@ -35,7 +35,7 @@ public class JwtService {
         log.error("gerando token do usuario ".concat(authentication.getName()));
         Instant now = Instant.now();
         long expiry = 3600;
-        UsuarioDetails usuarioDetails = (UsuarioDetails) authentication.getPrincipal();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String roles = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(" "));
@@ -47,8 +47,8 @@ public class JwtService {
                 .subject(authentication.getName())
                 .claim("roles", roles)
                 .claim("clientId", clientId)
-                .claim("contextMap", usuarioDetails.getContextMap())
-                .claim("userId", usuarioDetails.getUserId())
+                .claim("contextMap", userDetails.getContextMap())
+                .claim("userId", userDetails.getUserId())
                 .build();
 
         RSAPublicKey publicKey = clientKeyRepository.getPublicKey(clientId);

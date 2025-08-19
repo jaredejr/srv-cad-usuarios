@@ -1,16 +1,16 @@
 package br.com.unumpeople.cad.users.infra.converter;
 
 import br.com.unumpeople.cad.users.core.domain.Address;
-import br.com.unumpeople.cad.users.infra.entity.EnderecoEntity;
+import br.com.unumpeople.cad.users.infra.entity.AddressEntity;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EnderecoToEntityConverter implements Converter<Address, EnderecoEntity> {
+public class AddressToEntityConverter implements Converter<Address, AddressEntity> {
 
     @Override
-    public EnderecoEntity convert(Address address) {
-        return new EnderecoEntity(
+    public AddressEntity convert(Address address) {
+        return new AddressEntity(
                 address.getAddressType(),
                 address.getStreet(),
                 address.getNumber(),

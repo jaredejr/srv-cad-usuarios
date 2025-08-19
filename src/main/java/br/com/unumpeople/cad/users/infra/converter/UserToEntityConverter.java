@@ -1,8 +1,8 @@
 package br.com.unumpeople.cad.users.infra.converter;
 
-import br.com.unumpeople.cad.users.infra.entity.DocumentoEntity;
-import br.com.unumpeople.cad.users.infra.entity.TipoUsuarioEntity;
-import br.com.unumpeople.cad.users.infra.entity.UsuarioEntity;
+import br.com.unumpeople.cad.users.infra.entity.DocumentEntity;
+import br.com.unumpeople.cad.users.infra.entity.UserRoleContextEntity;
+import br.com.unumpeople.cad.users.infra.entity.UserEntity;
 import br.com.unumpeople.cad.users.core.domain.User;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
@@ -14,13 +14,13 @@ import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
-public class UsuarioToEntityConverter implements Converter<User, UsuarioEntity> {
+public class UserToEntityConverter implements Converter<User, UserEntity> {
 
-    EnderecoToEntityConverter enderecoToEntity;
+    AddressToEntityConverter enderecoToEntity;
 
     @Override
-    public UsuarioEntity convert(User user) {
-        return new UsuarioEntity(
+    public UserEntity convert(User user) {
+        return new UserEntity(
                 user.getId()!=null?
                         new ObjectId(user.getId())
                         :null,
@@ -35,7 +35,7 @@ public class UsuarioToEntityConverter implements Converter<User, UsuarioEntity> 
                 ObjectUtils.anyNotNull(user.getDocuments())
                         ? user.getDocuments()
                                 .stream()
-                                .map(documento -> new DocumentoEntity(
+                                .map(documento -> new DocumentEntity(
                                         documento.getNumber(),
                                         documento.getDocumentType(),
                                         documento.getIssueDate(),
@@ -45,7 +45,7 @@ public class UsuarioToEntityConverter implements Converter<User, UsuarioEntity> 
                         : null,
                 user.getUserRoleContextList()
                         .stream()
-                        .map(tipoUsuario -> new TipoUsuarioEntity(
+                        .map(tipoUsuario -> new UserRoleContextEntity(
                                 new ObjectId(tipoUsuario.getRole().getId()),
                                 ObjectUtils.anyNotNull(tipoUsuario.getContext())
                                         ? new ObjectId(tipoUsuario.getContext()) :null))

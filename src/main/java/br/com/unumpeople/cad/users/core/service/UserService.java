@@ -6,7 +6,7 @@ import br.com.unumpeople.cad.users.core.exception.DomainValidationException;
 import br.com.unumpeople.cad.users.core.ports.RoleRepositoryPort;
 import br.com.unumpeople.cad.users.core.ports.UserRepositoryPort;
 import br.com.unumpeople.cad.users.core.ports.UserServicePort;
-import br.com.unumpeople.cad.users.core.validation.usuario.UserValidator;
+import br.com.unumpeople.cad.users.core.validation.user.UserValidator;
 import lombok.AllArgsConstructor;
 
 import java.util.Optional;
@@ -30,7 +30,7 @@ public class UserService implements UserServicePort {
     @Override
     public User createUsuario(User user) {
         userValidator.validate(user);
-        return usuarioRepository.salvarUsuario(user);
+        return usuarioRepository.saveUser(user);
     }
 
     @Override
@@ -45,24 +45,24 @@ public class UserService implements UserServicePort {
                 user.getCreationDate(),
                 user.getLastAccess(),
                 user.getStatus().getValue());
-        return usuarioRepository.salvarUsuario(editedUser);
+        return usuarioRepository.saveUser(editedUser);
     }
 
     @Override
     public Set<User> getUserByName(String name) {
-        return Optional.ofNullable(usuarioRepository.buscarUsuarioPorNome(name))
+        return Optional.ofNullable(usuarioRepository.getUserByName(name))
                 .filter(set -> Boolean.FALSE.equals(set.isEmpty()))
                 .orElseThrow(()-> new DomainValidationException(USER_NOT_FOUND_MESSAGE));
     }
 
     @Override
     public User getUserById(String id) {
-        return usuarioRepository.buscarUsuarioPorId(id).orElseThrow(() -> new DomainValidationException("Usuário não encontrado!"));
+        return usuarioRepository.getUserById(id).orElseThrow(() -> new DomainValidationException("Usuário não encontrado!"));
     }
 
     @Override
     public Set<User> getUserByRoleContext(String roleName, String context) {
-        return Optional.ofNullable(usuarioRepository.buscarUsuarioPorTipo(new UserRoleContext(
+        return Optional.ofNullable(usuarioRepository.findByUserRoleContext(new UserRoleContext(
                         roleRepository.getRoleByName(roleName)
                                 .orElseThrow(()-> new DomainValidationException(USER_NOT_FOUND_MESSAGE)),
                         context)))
@@ -72,17 +72,17 @@ public class UserService implements UserServicePort {
 
     @Override
     public Set<User> getAllUsers() {
-        return usuarioRepository.buscarTodos();
+        return usuarioRepository.findAll();
     }
 
     @Override
     public void deleteUser(String id) {
-        usuarioRepository.excluirUsuario(getUserById(id));
+        usuarioRepository.deleteUser(getUserById(id));
     }
 
     @Override
     public void updateLastAccess(User user) {
         user.updateLastAccess();
-        usuarioRepository.salvarUsuario(user);
+        usuarioRepository.saveUser(user);
     }
 }

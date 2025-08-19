@@ -1,7 +1,6 @@
 package br.com.unumpeople.cad.users.infra.converter;
 
 import br.com.unumpeople.cad.users.core.domain.Operation;
-import br.com.unumpeople.cad.users.infra.entity.OperationEntity;
 import br.com.unumpeople.cad.users.infra.entity.RoleEntity;
 import br.com.unumpeople.cad.users.core.domain.Role;
 import org.bson.types.ObjectId;
@@ -22,7 +21,7 @@ public class RoleToEntityConverter implements Converter<Role, RoleEntity> {
         );
     }
 
-    private static List<OperationEntity> getOperations(List<Operation> operations) {
-        return operations.stream().map(operation -> new OperationEntity(operation.getName(), operation.getDescription())).toList();
+    private static List<String> getOperations(List<Operation> operations) {
+        return operations.stream().map(Operation::getDescription).toList();
     }
 }

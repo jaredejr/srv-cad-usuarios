@@ -1,23 +1,23 @@
 package br.com.unumpeople.cad.users.web.converter;
 
 import br.com.unumpeople.cad.users.core.domain.User;
-import br.com.unumpeople.cad.users.web.dto.UsuarioDto;
+import br.com.unumpeople.cad.users.web.dto.UserDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DtoToUsuarioConverter implements Converter<UsuarioDto, User> {
+public class DtoToUserConverter implements Converter<UserDto, User> {
     @Override
-    public User convert(UsuarioDto dto) {
+    public User convert(UserDto dto) {
         return new User(dto.id(),
-                dto.nome(),
+                dto.name(),
                 dto.email(),
                 null,
                 dto.addresses(),
                 dto.documents(),
-                dto.listaUserRoleContext(),
-                dto.dataCriacao(),
-                dto.ultimoAcesso(),
+                dto.userRoleContextlist(),
+                dto.creationDate(),
+                dto.lastAcess(),
                 dto.status());
     }
 }

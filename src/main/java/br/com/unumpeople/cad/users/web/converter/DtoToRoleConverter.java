@@ -14,7 +14,7 @@ public class DtoToRoleConverter implements Converter<RoleDto, Role> {
                 role.id(),
                 role.name(),
                 role.description(),
-                role.operations().stream().map(operation -> new Operation(operation.name(), operation.description())).toList()
+                role.operations().stream().map(operation -> new Operation(operation.name())).toList()
         );
     }
 }

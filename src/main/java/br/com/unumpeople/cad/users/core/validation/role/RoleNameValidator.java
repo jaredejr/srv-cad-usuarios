@@ -2,8 +2,8 @@ package br.com.unumpeople.cad.users.core.validation.role;
 
 import br.com.unumpeople.cad.users.core.domain.Role;
 import br.com.unumpeople.cad.users.core.exception.DomainValidationException;
-import br.com.unumpeople.cad.users.core.ports.RoleRepositoryPort;
 import br.com.unumpeople.cad.users.core.validation.ValidationStrategy;
+import br.com.unumpeople.cad.users.core.ports.RoleRepositoryPort;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

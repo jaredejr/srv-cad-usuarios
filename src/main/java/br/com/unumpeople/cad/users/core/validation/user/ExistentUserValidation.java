@@ -1,11 +1,10 @@
-package br.com.unumpeople.cad.users.core.validation.usuario;
+package br.com.unumpeople.cad.users.core.validation.user;
 
 import br.com.unumpeople.cad.users.core.domain.User;
 import br.com.unumpeople.cad.users.core.exception.DomainValidationException;
-import br.com.unumpeople.cad.users.core.ports.UserRepositoryPort;
 import br.com.unumpeople.cad.users.core.validation.ValidationStrategy;
+import br.com.unumpeople.cad.users.core.ports.UserRepositoryPort;
 import lombok.AllArgsConstructor;
-import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.Optional;
 
@@ -27,6 +26,6 @@ public class ExistentUserValidation implements ValidationStrategy<User> {
     private boolean checkIfAlreadyExists(String email, String id){
         Optional<User> usuario = usuarioRepository.findByEmail(email);
         return usuario.isPresent()
-                && (ObjectUtils.anyNull(id) || Boolean.FALSE.equals(usuario.get().getId().equals(id)));
+                && (null==id || Boolean.FALSE.equals(usuario.get().getId().equals(id)));
     }
 }

@@ -7,14 +7,13 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
 @AllArgsConstructor
-public class UsuarioDetails implements UserDetails {
+public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
 
     final User user;
 
@@ -60,21 +59,21 @@ public class UsuarioDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return UserDetails.super.isAccountNonExpired();
+        return org.springframework.security.core.userdetails.UserDetails.super.isAccountNonExpired();
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return UserDetails.super.isAccountNonLocked();
+        return org.springframework.security.core.userdetails.UserDetails.super.isAccountNonLocked();
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return UserDetails.super.isCredentialsNonExpired();
+        return org.springframework.security.core.userdetails.UserDetails.super.isCredentialsNonExpired();
     }
 
     @Override
     public boolean isEnabled() {
-        return UserDetails.super.isEnabled();
+        return org.springframework.security.core.userdetails.UserDetails.super.isEnabled();
     }
 }

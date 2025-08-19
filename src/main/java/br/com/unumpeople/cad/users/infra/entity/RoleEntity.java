@@ -11,6 +11,6 @@ public record RoleEntity(
         @Id ObjectId id,
         String name,
         String description,
-        List<OperationEntity> operations
+        List<String> operations
 ) {
 }

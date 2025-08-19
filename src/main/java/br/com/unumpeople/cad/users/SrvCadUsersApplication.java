@@ -4,11 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SrvCadUsuariosApplication {
+public class SrvCadUsersApplication {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(SrvCadUsuariosApplication.class, args);
+		SpringApplication.run(SrvCadUsersApplication.class, args);
 
 	}
 

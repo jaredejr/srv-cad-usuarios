@@ -10,8 +10,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.management.InvalidAttributeValueException;
-
 @Slf4j
 @Service
 @AllArgsConstructor
@@ -31,6 +29,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             log.error(e.getMessage());
             throw new UsernameNotFoundException(e.getMessage());
         }
-        return new br.com.unumpeople.cad.users.web.auth.UsuarioDetails(user);
+        return new br.com.unumpeople.cad.users.web.auth.UserDetails(user);
     }
 }

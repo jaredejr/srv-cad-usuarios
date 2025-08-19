@@ -1,10 +1,13 @@
 package br.com.unumpeople.cad.users.config;
 
+import br.com.unumpeople.cad.users.core.validation.user.ExistentUserValidation;
+import br.com.unumpeople.cad.users.core.validation.user.UpdateContextValidator;
+import br.com.unumpeople.cad.users.core.validation.user.UserTypeValidation;
+import br.com.unumpeople.cad.users.core.validation.user.UserValidator;
 import br.com.unumpeople.cad.users.core.ports.RoleRepositoryPort;
 import br.com.unumpeople.cad.users.core.ports.UserRepositoryPort;
 import br.com.unumpeople.cad.users.core.ports.UserServicePort;
 import br.com.unumpeople.cad.users.core.service.UserService;
-import br.com.unumpeople.cad.users.core.validation.usuario.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
