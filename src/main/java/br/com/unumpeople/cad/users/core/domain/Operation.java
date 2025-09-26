@@ -13,7 +13,7 @@ public class Operation {
 
     public Operation(String name) {
         if (null == name || name.isEmpty()) throw new DomainValidationException("O nome não deve ser nulo ou vazio");
-        if (Status.ValidUserStatusEnum.isValid(name)) throw new DomainValidationException("Tipo de operação inválida!");
+        if (!ValidOperationNames.isValid(name)) throw new DomainValidationException("Tipo de operação inválida!");
         this.name = name;
         this.description = ValidOperationNames.valueOf(name).getDescription();
     }

@@ -14,11 +14,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import javax.management.InvalidAttributeValueException;
@@ -29,7 +31,8 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("usuario")
+@RequestMapping("user")
+@Slf4j
 public class UserController {
 
     private final UserServicePort usuarioService;
@@ -90,9 +93,13 @@ public class UserController {
                     content = { @Content(schema = @Schema(implementation = Object.class)) })
     })
     @PutMapping("{id}")
-    @PreAuthorize("hasRole('SYSTEM_ADMIN') or " +
-            "@updateContextValidator.validate(principal.claims['userId'],#id)")
-    public ResponseEntity<UserDto> editarUsuario(@PathVariable String id, @RequestBody UserDto userDto) throws InvalidAttributeValueException {
+    public ResponseEntity<UserDto> editarUsuario(@PathVariable String id, @RequestBody UserDto userDto) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof Jwt) {
+            Jwt jwt = (Jwt) authentication.getPrincipal();
+            String userId = jwt.getClaim("userId");
+            log.info("userId: ".concat(userId));
+        }
         User user = usuarioService.editarUsuario(id, Objects.requireNonNull(dtoToUsuario.convert(userDto)));
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioToDto.convert(user));
     }

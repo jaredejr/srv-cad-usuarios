@@ -22,6 +22,6 @@ public class RoleToEntityConverter implements Converter<Role, RoleEntity> {
     }
 
     private static List<String> getOperations(List<Operation> operations) {
-        return operations.stream().map(Operation::getDescription).toList();
+        return operations.stream().map(Operation::getName).toList();
     }
 }

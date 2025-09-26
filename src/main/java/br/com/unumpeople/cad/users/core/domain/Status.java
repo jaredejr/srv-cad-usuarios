@@ -11,6 +11,7 @@ public class Status {
     public Status( String status ) {
         if (null == status || status.isEmpty()) throw new DomainValidationException("O status não deve ser nulo ou vazio");
         if(Boolean.FALSE.equals(ValidUserStatusEnum.isValid(status))) throw new DomainValidationException("Status inválido!");
+        this.value = status;
     }
 
     enum ValidUserStatusEnum {

@@ -6,6 +6,7 @@ import br.com.unumpeople.cad.users.core.domain.Role;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -21,6 +22,6 @@ public class EntityToRoleConverter implements Converter<RoleEntity, Role> {
     }
 
     private static List<Operation> getOperationList(List<String> operationEntities) {
-        return operationEntities.stream().map(Operation::new).toList();
+        return operationEntities != null ? operationEntities.stream().map(Operation::new).toList() : Collections.emptyList();
     }
 }

@@ -1,4 +1,4 @@
-package br.com.unumpeople.cad.users.web.auth;
+package br.com.unumpeople.cad.users.config.auth;
 
 import br.com.unumpeople.cad.users.core.domain.Operation;
 import br.com.unumpeople.cad.users.core.domain.UserRoleContext;

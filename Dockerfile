@@ -5,5 +5,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 RUN mkdir /app
 WORKDIR /app
+
 COPY target/*.jar /app/app.jar
+ENV JAVA_TOOL_OPTIONS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+EXPOSE 8080 5005
 CMD ["java","-jar","/app/app.jar"]

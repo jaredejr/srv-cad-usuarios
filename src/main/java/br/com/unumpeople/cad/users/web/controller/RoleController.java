@@ -39,7 +39,6 @@ public class RoleController {
                             schema = @Schema(implementation = RoleDto.class)) })
     })
     @GetMapping
-    @PreAuthorize("hasRole('SYSTEM_ADMIN')")
     public ResponseEntity<List<RoleDto>> buscarTodasAsRoles() {
         Set<Role> roles = roleService.getAllRoles();
         return ResponseEntity.ok(roles.stream().map(roleToDto::convert).collect(Collectors.toList()));
@@ -55,7 +54,6 @@ public class RoleController {
             @ApiResponse(responseCode = "404", description = "Role não encontrada")
     })
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('SYSTEM_ADMIN')")
     public ResponseEntity<RoleDto> buscarRolePorId(@PathVariable("id") String id) {
         Role role = roleService.getRoleById(id);
         return ResponseEntity.ok(roleToDto.convert(role));

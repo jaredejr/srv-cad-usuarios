@@ -13,11 +13,14 @@ public class RoleNameValidator implements ValidationStrategy<Role> {
 
     @Override
     public void validate(Role role) {
-        if (checkIfAlreadyExists(role.getName()))
+        if (checkIfAlreadyExists(role.getName(), role.getId()))
             throw new DomainValidationException("O name da Role informada já existe.");
     }
 
-    private Boolean checkIfAlreadyExists(String nome) {
-        return roleRepository.getRoleByName(nome).isPresent();
+    private Boolean checkIfAlreadyExists(String nome, String id) {
+        Role role = roleRepository.getRoleByName(nome).orElse(null);
+        if (null == role) return Boolean.FALSE;
+        if (id.equals(role.getId())) return Boolean.FALSE;
+        return Boolean.TRUE;
     }
 }

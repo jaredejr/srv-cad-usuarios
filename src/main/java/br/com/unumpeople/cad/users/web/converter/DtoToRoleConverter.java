@@ -10,6 +10,10 @@ import org.springframework.stereotype.Component;
 public class DtoToRoleConverter implements Converter<RoleDto, Role> {
     @Override
     public Role convert(RoleDto role) {
+        if (null==role.id()) return new Role(
+                role.name(),
+                role.description(),
+                role.operations().stream().map(operation -> new Operation(operation.name())).toList());
         return new Role(
                 role.id(),
                 role.name(),
