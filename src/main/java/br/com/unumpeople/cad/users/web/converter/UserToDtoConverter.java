@@ -12,6 +12,7 @@ public class UserToDtoConverter implements Converter<User, UserDto> {
         return new UserDto(user.getId(),
                 user.getName(),
                 user.getEmail().getValue(),
+                user.getPassword().getValue(),
                 user.getAddressList(),
                 user.getDocuments(),
                 user.getUserRoleContextList(),

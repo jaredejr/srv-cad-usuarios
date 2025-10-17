@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -40,11 +41,12 @@ public class UserController {
     private final DtoToUserConverter dtoToUsuario;
     private final DtoToNewUserConverter dtoToNewUsuario;
 
-    @Operation(summary = "Busca todos os usuários")
+    @Operation(summary = "Busca todos os usuários",
+            security = @SecurityRequirement(name = "security_auth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuários encontrados",
                     content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = UserDto.class, ref = "/components/schemas/UsuarioDto")) })
+                            schema = @Schema(implementation = UserDto.class)) })
     })
     @GetMapping
     public ResponseEntity<List<UserDto>> buscarTodasOsUsuarios() {
@@ -53,7 +55,8 @@ public class UserController {
         return ResponseEntity.ok(users.stream().map(usuarioToDto::convert).collect(Collectors.toList()));
     }
 
-    @Operation(summary = "Busca um usuario pelo ID")
+    @Operation(summary = "Busca um usuario pelo ID",
+            security = @SecurityRequirement(name = "security_auth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     description = "Usuario encontrado",
@@ -64,13 +67,14 @@ public class UserController {
                     content = { @Content(schema = @Schema(implementation = Object.class)) })
     })
     @GetMapping("{id}")
-    public ResponseEntity<UserDto> buscarUsuarioPorId(@PathVariable("id") String id) throws InvalidAttributeValueException {
+    public ResponseEntity<UserDto> buscarUsuarioPorId(@PathVariable("id") String id) {
         User user = usuarioService.getUserById(id);
         return ResponseEntity.ok(usuarioToDto.convert(user));
     }
 
 
-    @Operation(summary = "Cria um novo Usuario")
+    @Operation(summary = "Cria um novo Usuario",
+            security = @SecurityRequirement(name = "security_auth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuario atualizado com sucesso",
                     content = { @Content(mediaType = "application/json",
@@ -84,7 +88,8 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioToDto.convert(user));
     }
 
-    @Operation(summary = "Atualiza uma Usuario")
+    @Operation(summary = "Atualiza uma Usuario",
+            security = @SecurityRequirement(name = "security_auth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuario atualizado com sucesso",
                     content = { @Content(mediaType = "application/json",
@@ -104,7 +109,8 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioToDto.convert(user));
     }
 
-    @Operation(summary = "Exclui um usuario pelo ID")
+    @Operation(summary = "Exclui um usuario pelo ID",
+            security = @SecurityRequirement(name = "security_auth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Usuario excluído com sucesso"),
             @ApiResponse(responseCode = "404", description = "Usuario não encontrado")
@@ -115,7 +121,8 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @Operation(summary = "Busca um usuario pelo name")
+    @Operation(summary = "Busca um usuario pelo name",
+            security = @SecurityRequirement(name = "security_auth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     description = "Usuarios encontrados",
@@ -134,7 +141,8 @@ public class UserController {
                 .collect(Collectors.toSet()));
     }
 
-    @Operation(summary = "Busca um usuario pelo tipo")
+    @Operation(summary = "Busca um usuario pelo tipo",
+            security = @SecurityRequirement(name = "security_auth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     description = "Usuarios encontrados",

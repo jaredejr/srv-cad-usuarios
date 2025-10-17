@@ -22,4 +22,6 @@ public interface UserServicePort {
     void deleteUser(String id);
 
     void updateLastAccess(User user);
+
+    User getUserByEmailAndUpdateLastAccess(String email);
 }

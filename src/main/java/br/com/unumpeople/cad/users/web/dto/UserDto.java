@@ -20,6 +20,9 @@ public record UserDto(
         @Schema(description = "Email do usuário")
         String email,
 
+        @Schema
+        String password,
+
         @Schema(description = "Endereços do usuário")
         Set<Address> addresses,
 
@@ -27,13 +30,13 @@ public record UserDto(
         Set<Document> documents,
 
         @Schema(description = "Tipos de acesso do usuário")
-        Set<UserRoleContext> userRoleContextlist,
+        Set<UserRoleContext> userRoleContextList,
 
         @Schema(description = "Data de criação do usuário")
         LocalDateTime creationDate,
 
         @Schema(description = "Último acesso do usuário")
-        LocalDateTime lastAcess,
+        LocalDateTime lastAccess,
 
         @Schema(description = "Status do usuário")
         String status

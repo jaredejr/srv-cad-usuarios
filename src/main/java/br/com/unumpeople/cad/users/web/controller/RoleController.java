@@ -8,10 +8,13 @@ import br.com.unumpeople.cad.users.web.dto.RoleDto;
 import br.com.unumpeople.cad.users.core.domain.Role;
 import br.com.unumpeople.cad.users.core.ports.RoleServicePort;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,19 +35,22 @@ public class RoleController {
     private DtoToRoleConverter dtoToRole;
     private DtoToNewRoleConverter dtoToNewRole;
 
-    @Operation(summary = "Busca todas as roles")
+    @Operation(summary = "Busca todas as roles",
+            security = @SecurityRequirement(name = "security_auth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Roles encontradas",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = RoleDto.class)) })
     })
+    @PreAuthorize("hasAuthority('ROLE_READ_ALL_ROLE')")
     @GetMapping
     public ResponseEntity<List<RoleDto>> buscarTodasAsRoles() {
         Set<Role> roles = roleService.getAllRoles();
         return ResponseEntity.ok(roles.stream().map(roleToDto::convert).collect(Collectors.toList()));
     }
 
-    @Operation(summary = "Busca uma role pelo ID")
+    @Operation(summary = "Busca uma role pelo ID",
+            security = @SecurityRequirement(name = "security_auth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     description = "Role encontrada",
@@ -60,7 +66,8 @@ public class RoleController {
     }
 
 
-    @Operation(summary = "Cria uma nova Role")
+    @Operation(summary = "Cria uma nova Role",
+            security = @SecurityRequirement(name = "security_auth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Role criada com sucesso",
                     content = { @Content(mediaType = "application/json",
@@ -73,7 +80,8 @@ public class RoleController {
         return ResponseEntity.status(HttpStatus.CREATED).body(roleToDto.convert(role));
     }
 
-    @Operation(summary = "Atualiza uma Role")
+    @Operation(summary = "Atualiza uma Role",
+            security = @SecurityRequirement(name = "security_auth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Role atualizada com sucesso",
                     content = { @Content(mediaType = "application/json",
@@ -86,7 +94,8 @@ public class RoleController {
         return ResponseEntity.status(HttpStatus.CREATED).body(roleToDto.convert(role));
     }
 
-    @Operation(summary = "Exclui uma role pelo ID")
+    @Operation(summary = "Exclui uma role pelo ID",
+            security = @SecurityRequirement(name = "security_auth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Role excluída com sucesso"),
             @ApiResponse(responseCode = "404", description = "Role não encontrada")

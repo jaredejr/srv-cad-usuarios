@@ -15,9 +15,9 @@ public class DtoToUserConverter implements Converter<UserDto, User> {
                 null,
                 dto.addresses(),
                 dto.documents(),
-                dto.userRoleContextlist(),
+                dto.userRoleContextList(),
                 dto.creationDate(),
-                dto.lastAcess(),
+                dto.lastAccess(),
                 dto.status());
     }
 }

@@ -13,7 +13,7 @@ public class DtoToNewUserConverter implements Converter<UserDto, User> {
                 dto.email(),
                 dto.addresses(),
                 dto.documents(),
-                dto.userRoleContextlist(),
+                dto.userRoleContextList(),
                 dto.status());
     }
 }

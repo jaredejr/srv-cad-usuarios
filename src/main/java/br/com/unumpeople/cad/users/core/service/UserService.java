@@ -85,4 +85,11 @@ public class UserService implements UserServicePort {
         user.updateLastAccess();
         usuarioRepository.saveUser(user);
     }
+
+    @Override
+    public User getUserByEmailAndUpdateLastAccess(String email) {
+        User user = getUserByEmail(email);
+        updateLastAccess(user);
+        return user;
+    }
 }

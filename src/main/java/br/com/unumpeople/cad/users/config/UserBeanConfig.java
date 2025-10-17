@@ -37,9 +37,9 @@ public class UserBeanConfig {
     }
 
     @Bean
-    public UserServicePort usuarioServicePort(UserRepositoryPort userRepositoryPort,
-                                              RoleRepositoryPort roleRepositoryPort,
-                                              UserValidator userValidator){
+    public UserServicePort userServicePort(UserRepositoryPort userRepositoryPort,
+                                           RoleRepositoryPort roleRepositoryPort,
+                                           UserValidator userValidator){
         return new UserService(userRepositoryPort,
                 roleRepositoryPort,
                 userValidator);
