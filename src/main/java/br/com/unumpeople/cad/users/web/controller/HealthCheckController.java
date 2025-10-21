@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HealthCheckController {
 
-    @Value("${app.name}")
+    @Value("${springdoc.info.title}")
     private String applicationName;
 
-    @Value("${app.version}")
+    @Value("${springdoc.info.version}")
     private String applicationVersion;
 
     @GetMapping("/health")

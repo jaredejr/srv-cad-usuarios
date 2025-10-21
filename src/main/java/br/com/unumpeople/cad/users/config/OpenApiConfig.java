@@ -2,24 +2,21 @@ package br.com.unumpeople.cad.users.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
-import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.security.OAuthFlow;
 import io.swagger.v3.oas.annotations.security.OAuthFlows;
 import io.swagger.v3.oas.annotations.security.OAuthScope;
 
 
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 
 @Configuration
-@OpenAPIDefinition(
-        info = @Info(
-                title = "API de Cadastro de Usuários",
-                version = "v1",
-                description = "Serviço responsável pelo gerenciamento de usuários, perfis e autenticação."
-        )
-)
+@OpenAPIDefinition()
 @SecurityScheme(
         name = "security_auth", // Um nome de referência para o esquema de segurança
         type = SecuritySchemeType.OAUTH2,
@@ -37,7 +34,22 @@ import org.springframework.context.annotation.Configuration;
         )
 )
 public class OpenApiConfig {
-    // A classe agora pode ficar vazia!
-    // As anotações no topo já fazem todo o trabalho de configuração.
-    // O bean @Bean OpenAPI customOpenAPI() não é mais necessário.
+    // Injeta os mesmos valores que o HealthCheckController usa
+    @Value("${springdoc.info.title}")
+    private String title;
+
+    @Value("${springdoc.info.version}")
+    private String version;
+
+    @Value("${springdoc.info.description}")
+    private String description;
+
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .info(new Info()
+                        .title(title)
+                        .version(version)
+                        .description(description));
+    }
 }

@@ -8,7 +8,7 @@ import br.com.unumpeople.cad.users.web.dto.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -60,14 +60,12 @@ public class UserConverter {
                 user.getStatus().getValue());
     }
 
-    private Set<UserRoleContext> getRoleContextList(Map<String, String> userRoleContextList){
+    private Set<UserRoleContext> getRoleContextList(List<UserRoleContextDto> userRoleContextList){
 
         return userRoleContextList
-                .entrySet()
                 .stream()
-                .map(map -> roleContextConverter.convert(map.getKey(),map.getValue()))
+                .map(roleContext -> roleContextConverter.convert(roleContext.role(),roleContext.context()))
                 .collect(Collectors.toSet());
-
     }
 
     public Address toAddress(AddressRequestDto addressRequestDto) {

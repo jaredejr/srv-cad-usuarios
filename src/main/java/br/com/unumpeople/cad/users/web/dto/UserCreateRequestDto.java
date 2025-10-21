@@ -5,11 +5,12 @@ import br.com.unumpeople.cad.users.web.converter.UserRoleContextConverter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Schema(name = "UserDto", description = "Objeto para criação de um novo usuário")
+@Schema(name = "UserCreateRequestDto", description = "Objeto para criação de um novo usuário")
 public record UserCreateRequestDto(
 
         @Schema(description = "Nome do usuário")
@@ -25,7 +26,7 @@ public record UserCreateRequestDto(
         Set<Document> documents,
 
         @Schema(description = "Tipos de acesso do usuário")
-        Map<String, String> userRoleContextList,
+        List<UserRoleContextDto> userRoleContextList,
 
         @Schema(description = "Status do usuário")
         String status

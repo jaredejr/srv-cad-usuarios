@@ -12,7 +12,7 @@
 	<artifactId>srv-cad-users</artifactId>
 	<version>0.0.5-SNAPSHOT</version>
 	<name>srv-cad-users</name>
-	<description>serviço para cadastro de usuários</description>
+	<description>Servico para cadastro de usuarios</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -28,6 +28,7 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -78,6 +79,12 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
