@@ -2,6 +2,7 @@ package br.com.unumpeople.cad.users.infra.converter;
 
 import br.com.unumpeople.cad.users.core.domain.Address;
 import br.com.unumpeople.cad.users.infra.entity.AddressEntity;
+import org.bson.types.ObjectId;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,7 @@ public class AddressToEntityConverter implements Converter<Address, AddressEntit
     @Override
     public AddressEntity convert(Address address) {
         return new AddressEntity(
+                address.getId() != null ? new ObjectId(address.getId()) : new ObjectId(),
                 address.getAddressType(),
                 address.getStreet(),
                 address.getNumber(),

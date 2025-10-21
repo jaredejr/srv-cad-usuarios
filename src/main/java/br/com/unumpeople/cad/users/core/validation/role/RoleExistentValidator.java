@@ -7,7 +7,7 @@ import br.com.unumpeople.cad.users.core.ports.RoleRepositoryPort;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class RoleNameValidator implements ValidationStrategy<Role> {
+public class RoleExistentValidator implements ValidationStrategy<Role> {
 
     RoleRepositoryPort roleRepository;
 

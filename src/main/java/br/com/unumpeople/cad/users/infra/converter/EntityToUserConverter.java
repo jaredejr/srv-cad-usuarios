@@ -20,7 +20,7 @@ public class EntityToUserConverter implements Converter<UserEntity, User> {
 
     @Override
     public User convert(UserEntity entity) {
-        return new User(entity.getId().toHexString(),
+        return User.reconstitute(entity.getId().toHexString(),
                 entity.getName(),
                 entity.getEmail(),
                 entity.getPassword(),

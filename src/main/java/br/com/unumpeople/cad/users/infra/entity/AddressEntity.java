@@ -1,6 +1,10 @@
 package br.com.unumpeople.cad.users.infra.entity;
 
+
+import org.bson.types.ObjectId;
+
 public record AddressEntity(
+        ObjectId id,
         String addressType,
         String street,
         String number,

@@ -13,7 +13,7 @@ import java.util.List;
 public class EntityToRoleConverter implements Converter<RoleEntity, Role> {
     @Override
     public Role convert(RoleEntity roleEntity) {
-        return new Role(
+        return Role.reconstitute(
                 roleEntity.id().toHexString(),
                 roleEntity.name(),
                 roleEntity.description(),

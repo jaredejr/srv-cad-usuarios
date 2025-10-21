@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 @Schema(name = "UserDto", description = "Representação de um usuário")
-public record UserDto(
+public record UserResponseDto(
 
         @Schema(description = "ID do usuário (ObjectId em formato hexadecimal)", hidden = true)
         String id,
@@ -19,9 +19,6 @@ public record UserDto(
 
         @Schema(description = "Email do usuário")
         String email,
-
-        @Schema
-        String password,
 
         @Schema(description = "Endereços do usuário")
         Set<Address> addresses,

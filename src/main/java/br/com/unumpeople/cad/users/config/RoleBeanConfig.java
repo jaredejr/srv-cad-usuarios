@@ -1,6 +1,6 @@
 package br.com.unumpeople.cad.users.config;
 
-import br.com.unumpeople.cad.users.core.validation.role.RoleNameValidator;
+import br.com.unumpeople.cad.users.core.validation.role.RoleExistentValidator;
 import br.com.unumpeople.cad.users.core.ports.RoleRepositoryPort;
 import br.com.unumpeople.cad.users.core.ports.RoleServicePort;
 import br.com.unumpeople.cad.users.core.service.RoleService;
@@ -11,14 +11,14 @@ import org.springframework.context.annotation.Configuration;
 public class RoleBeanConfig {
 
     @Bean
-    public RoleNameValidator roleNameValidator(RoleRepositoryPort rolesRepository){
-        return new RoleNameValidator(rolesRepository);
+    public RoleExistentValidator roleNameValidator(RoleRepositoryPort rolesRepository){
+        return new RoleExistentValidator(rolesRepository);
     }
 
     @Bean
     public RoleServicePort roleServicePort(
             RoleRepositoryPort roleRepository,
-            RoleNameValidator roleNameValidator){
-        return new RoleService(roleRepository, roleNameValidator);
+            RoleExistentValidator roleExistentValidator){
+        return new RoleService(roleRepository, roleExistentValidator);
     }
 }

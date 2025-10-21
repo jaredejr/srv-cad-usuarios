@@ -2,16 +2,13 @@ package br.com.unumpeople.cad.users.web.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import java.util.List;
-
-@Schema(name = "UserRoleContextDto", description = "Representação de um tipo de usuário")
+@Schema(name = "UserRoleContextDto", description = "Representação de um RoleContext")
 public record UserRoleContextDto(
-        @Schema(description = "Nome da Role do usuário")
+
+        @Schema(description = "Role do usuário")
         String role,
 
-        @Schema(description = "Id do contexto do usuário")
-        String contexto
-) {
-
-
+        @Schema(description = "Contexto onde a Role se aplica")
+        String context)
+{
 }

@@ -4,7 +4,7 @@ import br.com.unumpeople.cad.users.core.domain.Role;
 import br.com.unumpeople.cad.users.core.exception.DomainValidationException;
 import br.com.unumpeople.cad.users.core.ports.RoleRepositoryPort;
 import br.com.unumpeople.cad.users.core.ports.RoleServicePort;
-import br.com.unumpeople.cad.users.core.validation.role.RoleNameValidator;
+import br.com.unumpeople.cad.users.core.validation.role.RoleExistentValidator;
 import lombok.AllArgsConstructor;
 
 import java.util.Set;
@@ -13,19 +13,20 @@ import java.util.Set;
 public class RoleService implements RoleServicePort {
 
     RoleRepositoryPort roleRepository;
-    RoleNameValidator roleNameValidator;
+    RoleExistentValidator roleExistentValidator;
 
     @Override
     public Role addRole(Role role) {
-        roleNameValidator.validate(role);
+        roleExistentValidator.validate(role);
         return roleRepository.saveRole(role);
     }
 
     @Override
     public Role editRole(String id, Role role) {
-        Role roleBeingUpdated = new Role(id, role.getName(), role.getDescription(), role.getOperations());
-        roleNameValidator.validate(roleBeingUpdated);
-        return roleRepository.saveRole(roleBeingUpdated);
+        Role roleToUpdate = getRoleById(id);
+        roleToUpdate.update(role.getName(), role.getDescription(), role.getOperations());
+        roleExistentValidator.validate(roleToUpdate);
+        return roleRepository.saveRole(roleToUpdate);
     }
 
     @Override

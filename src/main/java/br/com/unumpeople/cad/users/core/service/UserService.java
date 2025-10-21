@@ -1,7 +1,10 @@
 package br.com.unumpeople.cad.users.core.service;
 
+import br.com.unumpeople.cad.users.core.domain.Address;
+import br.com.unumpeople.cad.users.core.domain.Document;
 import br.com.unumpeople.cad.users.core.domain.UserRoleContext;
 import br.com.unumpeople.cad.users.core.domain.User;
+import br.com.unumpeople.cad.users.core.domain.User.UserFieldsForUpdate;
 import br.com.unumpeople.cad.users.core.exception.DomainValidationException;
 import br.com.unumpeople.cad.users.core.ports.RoleRepositoryPort;
 import br.com.unumpeople.cad.users.core.ports.UserRepositoryPort;
@@ -28,24 +31,16 @@ public class UserService implements UserServicePort {
     }
 
     @Override
-    public User createUsuario(User user) {
+    public User createUser(User user) {
         userValidator.validate(user);
         return usuarioRepository.saveUser(user);
     }
 
     @Override
-    public User editarUsuario(String id, User user){
-        User editedUser = new User(id,
-                user.getName(),
-                user.getEmail().getValue(),
-                user.getPassword().getValue(),
-                user.getAddressList(),
-                user.getDocuments(),
-                user.getUserRoleContextList(),
-                user.getCreationDate(),
-                user.getLastAccess(),
-                user.getStatus().getValue());
-        return usuarioRepository.saveUser(editedUser);
+    public User updateUser(String id, UserFieldsForUpdate userFields){
+        User user = getUserById(id);
+        user.updateUser(userFields);
+        return usuarioRepository.saveUser(user);
     }
 
     @Override
@@ -57,7 +52,7 @@ public class UserService implements UserServicePort {
 
     @Override
     public User getUserById(String id) {
-        return usuarioRepository.getUserById(id).orElseThrow(() -> new DomainValidationException("Usuário não encontrado!"));
+        return usuarioRepository.getUserById(id).orElseThrow(() -> new DomainValidationException(USER_NOT_FOUND_MESSAGE));
     }
 
     @Override
@@ -91,5 +86,33 @@ public class UserService implements UserServicePort {
         User user = getUserByEmail(email);
         updateLastAccess(user);
         return user;
+    }
+
+    @Override
+    public User addAddress(String userId, Address address) {
+        User user = getUserById(userId);
+        user.addNewAddress(address);
+        return usuarioRepository.saveUser(user);
+    }
+
+    @Override
+    public User removeAddress(String userId, String addressId) {
+        User user = getUserById(userId);
+        user.removeAddress(addressId);
+        return usuarioRepository.saveUser(user);
+    }
+
+    @Override
+    public User addDocument(String userId, Document document) {
+        User user = getUserById(userId);
+        user.addNewDocument(document);
+        return usuarioRepository.saveUser(user);
+    }
+
+    @Override
+    public User removeDocument(String userId, String documentNumber) {
+        User user = getUserById(userId);
+        user.removeDocument(documentNumber);
+        return usuarioRepository.saveUser(user);
     }
 }
