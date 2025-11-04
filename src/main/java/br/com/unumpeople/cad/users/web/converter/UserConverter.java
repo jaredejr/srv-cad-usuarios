@@ -71,13 +71,15 @@ public class UserConverter {
     public Address toAddress(AddressRequestDto addressRequestDto) {
         return new Address(null,
                 addressRequestDto.addressType(),
+                addressRequestDto.description(),
                 addressRequestDto.street(),
                 addressRequestDto.number(),
                 addressRequestDto.addressComplement(),
                 addressRequestDto.neighborhood(),
                 addressRequestDto.city(),
                 addressRequestDto.state(),
-                addressRequestDto.postalCode()
+                addressRequestDto.zipCode(),
+                addressRequestDto.country()
         );
     }
 

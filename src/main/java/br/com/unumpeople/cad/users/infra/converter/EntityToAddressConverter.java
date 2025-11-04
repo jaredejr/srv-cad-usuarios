@@ -13,6 +13,7 @@ public class EntityToAddressConverter implements Converter<AddressEntity, Addres
     public Address convert(AddressEntity address) {
         return new Address(
                 address.id().toHexString(),
+                address.description(),
                 address.addressType(),
                 address.street(),
                 address.number(),
@@ -20,7 +21,8 @@ public class EntityToAddressConverter implements Converter<AddressEntity, Addres
                 address.neighborhood(),
                 address.city(),
                 address.state(),
-                address.zipCode()
+                address.zipCode(),
+                address.country()
         );
     }
 }

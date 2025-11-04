@@ -13,6 +13,7 @@ public class AddressToEntityConverter implements Converter<Address, AddressEntit
     public AddressEntity convert(Address address) {
         return new AddressEntity(
                 address.getId() != null ? new ObjectId(address.getId()) : new ObjectId(),
+                address.getDescription(),
                 address.getAddressType(),
                 address.getStreet(),
                 address.getNumber(),
@@ -20,7 +21,8 @@ public class AddressToEntityConverter implements Converter<Address, AddressEntit
                 address.getNeighborhood(),
                 address.getCity(),
                 address.getState(),
-                address.getZipCode()
+                address.getZipCode(),
+                address.getCountry()
         );
     }
 }

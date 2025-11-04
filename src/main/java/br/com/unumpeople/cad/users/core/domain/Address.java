@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Address {
     private String id;
+    private String description;
     private String addressType;
     private String street;
     private String number;
@@ -17,4 +18,5 @@ public class Address {
     private String city;
     private String state;
     private String zipCode;
+    private String country;
 }

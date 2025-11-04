@@ -5,6 +5,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public record AddressRequestDto(
         @Schema(description = "Street name")
         String street,
+        @Schema(description = "Address description")
+        String description,
         @Schema(description = "Address Type")
         String addressType,
         @Schema(description = "Number")
@@ -18,6 +20,8 @@ public record AddressRequestDto(
         @Schema(description = "State")
         String state,
         @Schema(description = "Postal code")
-        String postalCode
+        String zipCode,
+        @Schema(description = "Country")
+        String country
 ) {
 }

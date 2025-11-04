@@ -5,6 +5,7 @@ import org.bson.types.ObjectId;
 
 public record AddressEntity(
         ObjectId id,
+        String description,
         String addressType,
         String street,
         String number,
@@ -12,6 +13,7 @@ public record AddressEntity(
         String neighborhood,
         String city,
         String state,
-        String zipCode
+        String zipCode,
+        String country
 ) {
 }

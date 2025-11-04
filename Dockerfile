@@ -1,4 +1,4 @@
-FROM openjdk:21-jdk-slim
+FROM openjdk:26-ea-21-slim
 LABEL authors="jaredejr"
 RUN apt-get update && \
     apt-get install -y curl && \
