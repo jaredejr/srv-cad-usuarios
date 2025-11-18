@@ -34,14 +34,13 @@ import org.springframework.context.annotation.Configuration;
         )
 )
 public class OpenApiConfig {
-    // Injeta os mesmos valores que o HealthCheckController usa
-    @Value("${springdoc.info.title}")
+    @Value("${app.name}")
     private String title;
 
-    @Value("${springdoc.info.version}")
+    @Value("${app.version}")
     private String version;
 
-    @Value("${springdoc.info.description}")
+    @Value("${app.description}")
     private String description;
 
     @Bean
