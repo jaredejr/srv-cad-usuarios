@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HealthCheckController {
 
-    @Value("${springdoc.info.title}")
-    private String applicationName;
+    @Value("${app.name}")
+    private String title;
 
-    @Value("${springdoc.info.version}")
-    private String applicationVersion;
+    @Value("${app.version}")
+    private String version;
 
     @GetMapping("/health")
     public ResponseEntity<String> ok() {
-        return ResponseEntity.ok("OK - " + applicationName + " - Rlease: " + applicationVersion);
+        return ResponseEntity.ok("OK - " + title + " - Rlease: " + version);
     }
 }
